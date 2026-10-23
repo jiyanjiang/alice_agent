@@ -1,0 +1,12 @@
+{
+  "product": "TAA Complete",
+  "version": "0.4.1",
+  "runtime_version": "2.2.48",
+  "file": "taa_agent-core-0.4.1.tar.gz",
+  "bytes": 3160583,
+  "sha256": "5f41da49accb91b380136978c9a2ca28293e612a383f1413949b6f041dfa9e1d",
+  "default_tools": [
+    "weather",
+    "research.ask"
+  ]
+}
