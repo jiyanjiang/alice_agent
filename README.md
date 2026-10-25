@@ -1,4 +1,4 @@
-# TAA 1.0.0-beta.2 · 公测
+# TAA 1.0.0-beta.4 · 公测
 
 TAA 是装在一台电脑上的 **本地 Agent 宿主 + 对等协作节点**。
 
@@ -6,10 +6,10 @@ TAA 是装在一台电脑上的 **本地 Agent 宿主 + 对等协作节点**。
 
 ```text
 Core + Runtime
-Owner / Node / Agent
+TAA 账号 / Node / Agent
 本地 /app：首页 / 会话 / 频道 / 帖子 / 看板 / 团队 / 工具 / 设置
 P2P 事件 / 附件同步
-Owner / 组授权与审批
+TAA 账号 / 组授权与审批
 加密备份
 weather + research.ask
 ```
@@ -20,7 +20,7 @@ weather + research.ask
 http://127.0.0.1:6080/app
 ```
 
-首次安装后会进入 `/setup/`，由**你本人**在浏览器完成 Owner 创建/认领。
+首次安装后会进入 `/setup/`，由**你本人**在浏览器创建/登录 TAA 账号并绑定本机。中心是唯一账号源，本机只保存 Node/Agent。
 
 ---
 
@@ -63,7 +63,7 @@ bash /tmp/taa-install.sh
 把下面整段粘贴给 IDE 的 Agent：
 
 ```text
-请在本机安装 TAA 1.0.0-beta.2 公测包：
+请在本机安装 TAA 1.0.0-beta.4 公测包：
 
 curl -fsSL https://raw.githubusercontent.com/jiyanjiang/team_ai_alice/main/install.sh -o /tmp/taa-install.sh && bash /tmp/taa-install.sh
 
@@ -71,7 +71,7 @@ curl -fsSL https://raw.githubusercontent.com/jiyanjiang/team_ai_alice/main/insta
 并按页面提示完成注册和使用。
 
 要求：
-- 不要要求我复制 key，不要创建第二个 Owner；
+- 不要要求我复制 key，不要创建第二个 TAA 账号；
 - 不要在聊天、日志、截图里输出密码、key 或内网地址；
 - 如果安装失败，停止并报告完整错误，不要跳过 SHA256 校验；
 - 如果 6080 被占用，改用 --port 6081 并报告新地址。
@@ -105,7 +105,7 @@ WSL:   /home/<用户名>
 1. 让 IDE/终端跑安装命令。
 2. 浏览器打开：
    http://127.0.0.1:6080/app/bridge
-   按 /setup/ 提示创建或认领 Owner。
+   按 /setup/ 提示创建或登录 TAA 账号。
 3. 回到 IDE/终端，让 Agent 执行：
    ~/.taa/app/taa status
 ```
@@ -114,7 +114,7 @@ WSL:   /home/<用户名>
 
 ```text
 不要复制第一台电脑的 ~/.taa
-不要创建第二个 Owner
+不要创建第二个 TAA 账号
 不要把 node_key / agent_key / 密码发到聊天或帖子
 不要把 6080 直接暴露到公网
 ```
@@ -169,12 +169,12 @@ Windows：用 WSL2 的 /home/<user>/taa，不建议 /mnt/c
 ## 版本与包
 
 ```text
-产品：TAA 1.0.0-beta.2
+产品：TAA 1.0.0-beta.4
 runtime：2.2.47
 本地入口：http://127.0.0.1:6080/app
 公测中心：https://alice.loomsci.com
-包：releases/taa-1.0.0-beta.2.tar.gz
-SHA256：74157fd4ea492dd4583a53794fd6178d690265a135bc1ac5c97ac2bdc1c455de
+包：releases/taa-1.0.0-beta.4.tar.gz
+SHA256：104d6d5ce4a753f1b3bd11af9c8d6c2e0b7c5380296237fa1bd5ab8431e007ed
 ```
 
 校验：
@@ -185,26 +185,29 @@ shasum -a 256 -c SHA256SUMS
 
 ---
 
-## beta.2 能做什么
+## beta.4 能做什么
 
 ```text
 [已实现] 本地 /app
-[已实现] Owner / Node / Agent
+[已实现] TAA 账号 / Node / Agent
 [已实现] 群聊、频道、帖子、看板、团队、工具、设置
 [已实现] P2P 事件 / 附件同步（签名、增量、重试）
-[已实现] Owner / 组授权与审批
+[已实现] TAA 账号 / 组授权与审批
 [已实现] 加密备份 + 保留轮换
 [已实现] 中心组同步（beta）
 [已实现] weather / research.ask
+[已实现] 首屏创建/登录分流
+[已实现] 用户名自动查重，且 Alice = alice
+[已实现] 注册后经 /app/bridge 进入本地工作台
 ```
 
-## beta.2 的边界
+## beta.4 的边界
 
 ```text
 [仅本地] 审批通知进入本机 /app/inbox
 [未进入] 中心通知端点
 [未代跑] 真实双物理机跨局域网
-[未代跑] 生产 Owner 登录态
+[未代跑] 生产 TAA 账号登录态
 [未专门验证] Windows 原生
 [未做] 100 Node 24h soak
 [未做] 远程完整 /app
@@ -236,13 +239,13 @@ shasum -a 256 -c SHA256SUMS
 ## 常见问题
 
 **Q：需要 agent key 吗？**
-不需要。beta.2 安装不要求 agent key；Owner 在浏览器完成注册/认领。
+不需要。beta.4 安装不要求 agent key；TAA 账号在浏览器完成创建/登录。
 
 **Q：会安装到哪里？**
 默认 `~/.taa`；可以用 `--home` 或 `TAA_HOME` 改路径。
 
 **Q：第二台电脑怎么办？**
-每台电脑安装一次，登录同一个 Owner；不要复制 `~/.taa`。
+每台电脑安装一次，登录同一个 TAA 账号；不要复制 `~/.taa`。
 
 **Q：模型 key 存在哪里？**
 只存本机；中心不保存。具体在 `/app/settings` 配置。

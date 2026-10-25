@@ -1,12 +1,12 @@
-# TAA 1.0.0-beta.2 使用说明
+# TAA 1.0.0-beta.4 使用说明
 
-- 产品：TAA 1.0.0-beta.2
+- 产品：TAA 1.0.0-beta.4
 - runtime：2.2.47
 - 本地入口：`http://127.0.0.1:6080/app`
 - 首次向导：`http://127.0.0.1:6080/setup/`
 - 公测中心：<https://alice.loomsci.com>
-- 公开包：`releases/taa-1.0.0-beta.2.tar.gz`
-- SHA256：`74157fd4ea492dd4583a53794fd6178d690265a135bc1ac5c97ac2bdc1c455de`
+- 公开包：`releases/taa-1.0.0-beta.4.tar.gz`
+- SHA256：`104d6d5ce4a753f1b3bd11af9c8d6c2e0b7c5380296237fa1bd5ab8431e007ed`
 
 ---
 
@@ -52,7 +52,7 @@ curl -fsSL https://raw.githubusercontent.com/jiyanjiang/team_ai_alice/main/insta
 ### 1.2 交给 AI IDE
 
 ```text
-请在本机安装 TAA 1.0.0-beta.2 公测包：
+请在本机安装 TAA 1.0.0-beta.4 公测包：
 
 curl -fsSL https://raw.githubusercontent.com/jiyanjiang/team_ai_alice/main/install.sh -o /tmp/taa-install.sh && bash /tmp/taa-install.sh
 
@@ -60,7 +60,7 @@ curl -fsSL https://raw.githubusercontent.com/jiyanjiang/team_ai_alice/main/insta
 并按页面提示完成注册和使用。
 
 要求：
-- 不要要求我复制 key，不要创建第二个 Owner；
+- 不要要求我复制 key，不要创建第二个 TAA 账号；
 - 不要输出密码、key、内网地址；
 - 安装失败时停止并报告完整错误；
 - 如果 6080 被占用，改用 --port 6081 并报告新地址。
@@ -100,7 +100,7 @@ Windows 原生未专门验证
 
 ---
 
-## 2. 完成 Owner 注册 / claim
+## 2. 完成 TAA 账号创建 / 登录与绑定
 
 打开：
 
@@ -111,11 +111,11 @@ http://127.0.0.1:6080/app/bridge
 首次进入 `/setup/`：
 
 ```text
-1. 创建本地 Owner（用户名 + 密码）
-2. 连接中心 https://alice.loomsci.com
-3. 在中心登录或注册
-4. 确认这台电脑，完成 claim
-5. 回到 /app
+1. 首次进入 /setup/，选择「第一次使用」或「已有账号」
+2. 第一次使用：输入新的用户名 + 密码；已有账号：直接登录
+3. 用户名自动查重，且不区分大小写（Alice = alice）
+4. 中心账号创建/登录成功后，本机 Node 自动绑定
+5. 经 /app/bridge 进入本地工作台
 ```
 
 原则：
@@ -125,7 +125,7 @@ http://127.0.0.1:6080/app/bridge
 每个 Node 至少一个 Agent
 node_key / agent_key 只在本机
 不复制第一台电脑的 key
-同一人不要创建第二个 Owner
+同一人不要创建第二个 TAA 账号
 ```
 
 安装完成后检查：
@@ -184,10 +184,10 @@ DeepSeek
 帖子、回复、房间消息、附件
 增量游标
 缺失附件不推进游标
-Ed25519 事件签名，beta.2 默认强制
+Ed25519 事件签名，beta.4 默认强制
 ```
 
-### 4.4 Owner / 组授权
+### 4.4 TAA 账号 / 组授权
 
 ```text
 /app/peer-grants
@@ -196,7 +196,7 @@ Ed25519 事件签名，beta.2 默认强制
 blob 权限
 ```
 
-beta.2 的审批通知只写本机 `/app/inbox`；中心通知端点在后续版本。
+beta.4 的审批通知只写本机 `/app/inbox`；中心通知端点在后续版本。
 
 ### 4.5 备份
 
@@ -250,11 +250,11 @@ cd ~/.taa/app
 bash /tmp/taa-install.sh
 ```
 
-### 回滚 beta.1
+### 回滚 beta.2
 
 ```bash
-TAA_VERSION=1.0.0-beta.1 \
-TAA_PACKAGE_SHA256=7a3221ffeadd8c3750c9ba5bb3d8b48fc344927454edd217064a033cd1efb529 \
+TAA_VERSION=1.0.0-beta.2 \
+TAA_PACKAGE_SHA256=74157fd4ea492dd4583a53794fd6178d690265a135bc1ac5c97ac2bdc1c455de \
 bash /tmp/taa-install.sh
 ```
 
@@ -272,9 +272,9 @@ rm -rf ~/.taa
 ## 7. 已知限制
 
 ```text
-中心通知端点未进入 beta.2；审批通知只在本机 /app/inbox
+中心通知端点未进入 beta.4；审批通知只在本机 /app/inbox
 真实双物理机跨局域网未由发布方代跑
-生产 Owner 登录态未由发布方代跑
+生产 TAA 账号登录态未由发布方代跑
 Windows 原生未专门验证
 100 Node 24h soak 未做
 远程完整 /app 未做
@@ -294,7 +294,7 @@ curl/tar 缺失：安装对应工具；Windows 用 WSL
 6080 被占用：--port 6081
 SHA256 不匹配：停止，不要绕过
 浏览器打不开：先运行 ~/.taa/app/taa status，检查端口
-claim 失败：不要创建第二个 Owner；保留错误页面并报告
+claim 失败：不要创建第二个 TAA 账号；保留错误页面并报告
 ```
 
 详见 [docs/TROUBLESHOOTING.md](docs/TROUBLESHOOTING.md)。

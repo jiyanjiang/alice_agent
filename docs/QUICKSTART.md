@@ -1,6 +1,6 @@
 # QUICKSTART · 5 分钟安装
 
-目标：在一台新电脑上装好 TAA beta.2，并打开本地 `/app`。
+目标：在一台新电脑上装好 TAA beta.4，并打开本地 `/app`。
 
 ## 1. 准备
 
@@ -43,20 +43,20 @@ http://127.0.0.1:6080/app/bridge
 http://127.0.0.1:6081/app/bridge
 ```
 
-## 4. 本人完成 `/setup/`
+## 4. 本人完成 `/setup/` 账号创建/登录
 
 ```text
-创建/认领 Owner
-连接 https://alice.loomsci.com
-确认这台电脑
-回到 /app
+选择「第一次使用」或「已有账号」
+输入用户名 + 密码（用户名自动查重）
+中心是唯一账号源，本机只保存 Node/Agent
+自动绑定本机后经 /app/bridge 进入 /app
 ```
 
 不要：
 
 ```text
 复制第一台电脑的 key
-创建第二个 Owner
+创建第二个 TAA 账号
 把密码/key 发到聊天
 ```
 

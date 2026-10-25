@@ -1,11 +1,11 @@
-# TAA 1.0.0-beta.2 · AI IDE 安装提示词
+# TAA 1.0.0-beta.4 · AI IDE 安装提示词
 
 复制下面整段给 IDE 的 Agent（opencode / Qoder / Cursor / Codex / Claude Code 等）。
 
 ## 主提示词（默认路径）
 
 ```text
-请在本机安装 TAA 1.0.0-beta.2 公测包。
+请在本机安装 TAA 1.0.0-beta.4 公测包。
 
 先检测系统：macOS / Linux / Windows。
 - macOS / Linux：使用系统 shell。
@@ -20,9 +20,9 @@
    bash /tmp/taa-install.sh
 3. 安装后打开：
    http://127.0.0.1:6080/app/bridge
-   把 /setup/ 页面留给我本人完成 Owner 创建/认领。
+   把 /setup/ 页面留给我本人完成 TAA 账号创建/登录。
 4. 不要要求我复制 node_key / agent_key。
-5. 不要创建第二个 Owner。
+5. 不要创建第二个 TAA 账号。
 6. 不要在聊天、日志、截图里输出任何 key、密码、内网地址。
 7. 不要把 6080 暴露到公网。
 8. 如果 SHA256 不匹配、安装失败或 6080 被占用：
@@ -40,7 +40,7 @@
 ## 自定义路径
 
 ```text
-请把 TAA 1.0.0-beta.2 安装到 $HOME/Applications/taa：
+请把 TAA 1.0.0-beta.4 安装到 $HOME/Applications/taa：
 
 curl -fsSL https://raw.githubusercontent.com/jiyanjiang/team_ai_alice/main/install.sh -o /tmp/taa-install.sh
 bash /tmp/taa-install.sh --home "$HOME/Applications/taa"
@@ -49,7 +49,7 @@ bash /tmp/taa-install.sh --home "$HOME/Applications/taa"
 并按页面提示完成注册和使用。
 
 要求：
-- 不复制 key、不创建第二个 Owner；
+- 不复制 key、不创建第二个 TAA 账号；
 - 不输出密码/key；
 - 安装后执行：
   "$HOME/Applications/taa/app/taa" status
@@ -59,14 +59,14 @@ bash /tmp/taa-install.sh --home "$HOME/Applications/taa"
 ## 最短提示词
 
 ```text
-请在本机安装 TAA 1.0.0-beta.2 公测包：
+请在本机安装 TAA 1.0.0-beta.4 公测包：
 
 curl -fsSL https://raw.githubusercontent.com/jiyanjiang/team_ai_alice/main/install.sh -o /tmp/taa-install.sh && bash /tmp/taa-install.sh
 
 安装后打开 http://127.0.0.1:6080/app/bridge
 并按提示完成注册和使用。
 
-不复制 key；不创建第二个 Owner；不输出密码/key；失败时停止并报告完整错误。
+不复制 key；不创建第二个 TAA 账号；不输出密码/key；失败时停止并报告完整错误。
 ```
 
 ## 真人操作
@@ -74,7 +74,7 @@ curl -fsSL https://raw.githubusercontent.com/jiyanjiang/team_ai_alice/main/insta
 ```text
 1. 把提示词粘贴给 IDE Agent。
 2. 浏览器打开 http://127.0.0.1:6080/app/bridge
-3. 在 /setup/ 完成 Owner 创建/认领。
+3. 在 /setup/ 完成 TAA 账号创建/登录；用户名自动查重，且不区分大小写。
 4. 回到 IDE/终端，让 Agent 执行 taa status。
 ```
 

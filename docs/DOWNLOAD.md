@@ -3,10 +3,10 @@
 ## 当前公测包
 
 ```text
-产品：TAA 1.0.0-beta.2
-包：releases/taa-1.0.0-beta.2.tar.gz
-字节：3,214,869
-SHA256：74157fd4ea492dd4583a53794fd6178d690265a135bc1ac5c97ac2bdc1c455de
+产品：TAA 1.0.0-beta.4
+包：releases/taa-1.0.0-beta.4.tar.gz
+字节：3,214,993
+SHA256：104d6d5ce4a753f1b3bd11af9c8d6c2e0b7c5380296237fa1bd5ab8431e007ed
 ```
 
 公开地址：
@@ -18,7 +18,7 @@ https://github.com/jiyanjiang/team_ai_alice
 raw 包：
 
 ```text
-https://raw.githubusercontent.com/jiyanjiang/team_ai_alice/main/releases/taa-1.0.0-beta.2.tar.gz
+https://raw.githubusercontent.com/jiyanjiang/team_ai_alice/main/releases/taa-1.0.0-beta.4.tar.gz
 ```
 
 **不需要 key，不需要登录。**
@@ -41,18 +41,19 @@ shasum -a 256 -c SHA256SUMS
 或：
 
 ```bash
-shasum -a 256 releases/taa-1.0.0-beta.2.tar.gz
+shasum -a 256 releases/taa-1.0.0-beta.4.tar.gz
 ```
 
 必须等于：
 
 ```text
-74157fd4ea492dd4583a53794fd6178d690265a135bc1ac5c97ac2bdc1c455de
+104d6d5ce4a753f1b3bd11af9c8d6c2e0b7c5380296237fa1bd5ab8431e007ed
 ```
 
 ## 历史包 / 回滚
 
 ```text
+taa-1.0.0-beta.2.tar.gz
 taa-1.0.0-beta.1.tar.gz
 taa-node-v05-0.5.1.tar.gz
 taa-node-v05-0.5.0.tar.gz

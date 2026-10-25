@@ -1,4 +1,4 @@
-# INSTALL · 安装 TAA 1.0.0-beta.2
+# INSTALL · 安装 TAA 1.0.0-beta.4
 
 本页是详细安装说明，适用于 macOS / Linux / Windows(WSL2)。
 
@@ -40,7 +40,7 @@ bash /tmp/taa-install.sh
 安装器执行：
 
 ```text
-1. 下载 beta.2 包
+1. 下载 beta.4 包
 2. 校验 SHA256
 3. 安装到 ~/.taa/app
 4. 创建 ~/.taa/venv
@@ -54,7 +54,7 @@ bash /tmp/taa-install.sh
 http://127.0.0.1:6080/app/bridge
 ```
 
-`/setup/` 由本人完成 Owner 创建/认领。不要复制 key，不要创建第二个 Owner。
+`/setup/` 由本人完成 TAA 账号创建/登录，并自动绑定本机。不要复制 key，不要创建第二个 TAA 账号。
 
 ---
 
@@ -175,7 +175,7 @@ curl -fsS http://127.0.0.1:6080/app/chats | head
 ```text
 不要跳过 SHA256
 不要手工改包
-不要创建第二个 Owner
+不要创建第二个 TAA 账号
 不要把 key/密码贴到聊天
 ```
 
@@ -208,11 +208,11 @@ Python 版本
 
 ---
 
-## 9. 回滚 beta.1
+## 9. 回滚 beta.2
 
 ```bash
-TAA_VERSION=1.0.0-beta.1 \
-TAA_PACKAGE_SHA256=7a3221ffeadd8c3750c9ba5bb3d8b48fc344927454edd217064a033cd1efb529 \
+TAA_VERSION=1.0.0-beta.2 \
+TAA_PACKAGE_SHA256=74157fd4ea492dd4583a53794fd6178d690265a135bc1ac5c97ac2bdc1c455de \
 bash /tmp/taa-install.sh
 ```
 
