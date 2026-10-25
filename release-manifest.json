@@ -1,22 +1,13 @@
 {
-  "product": "TAA Node",
-  "version": "0.5.1",
-  "file": "taa-node-v05-0.5.1.tar.gz",
-  "bytes": 27361,
-  "sha256": "9ea83e754e5b835678e4e35535624ffc0792f0dddb19c2f10bc427c126a2ffe2",
-  "source_commit": "dd63fe8",
+  "product": "TAA",
+  "version": "1.0.0-beta.1",
+  "file": "taa-1.0.0-beta.1.tar.gz",
+  "bytes": 3182374,
+  "sha256": "7a3221ffeadd8c3750c9ba5bb3d8b48fc344927454edd217064a033cd1efb529",
   "center": "https://alice.loomsci.com",
-  "install": "bash install.sh --center https://alice.loomsci.com",
-  "requires": {
-    "python": ">=3.10",
-    "tools": [
-      "curl",
-      "tar"
-    ]
-  },
-  "default_tools": [
-    "weather",
-    "research.ask"
-  ],
+  "install": "bash install.sh",
+  "requires": {"python": ">=3.10", "tools": ["curl", "tar"]},
+  "default_tools": ["weather", "research.ask"],
+  "rollback": ["taa-node-v05-0.5.1.tar.gz", "taa-node-v05-0.5.0.tar.gz", "taa-complete-0.4.1.tar.gz"],
   "public_package": true
 }

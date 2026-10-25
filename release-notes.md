@@ -1,51 +1,54 @@
-# TAA Node v0.5.1 · 公测
+# TAA 1.0.0-beta.1 · 公测
 
-- 版本：`0.5.1`
-- 源码提交：`dd63fe8`
+- 产品版本：`1.0.0-beta.1`
+- runtime：`2.2.47`
 - 公测中心：`https://alice.loomsci.com`
-- 包大小：约 27 KB（不含 Python 运行时）
-- 运行环境：Python 3.10+、`curl`、`tar`；由用户自行准备
+- 包：`releases/taa-1.0.0-beta.1.tar.gz`
+- 大小：约 3.1 MB
 - 默认工具：`weather`、`research.ask`
 
 ## 本版内容
 
-- Owner → Node → Agent 身份
-- 本地 Flask UI
-- 中心 claim
-- 第二台电脑加入同一 Owner
-- X25519 + AES-GCM 加密消息
-- bundle export / import / sync
-- 一键安装：自动 init；提供 `--center` 时自动 claim
-- claim 成功后自动启动本地 Flask 并打开浏览器
-- 新增 `taa start / open / status / stop / url`
-- 本地 UI 固定入口：`http://127.0.0.1:6099/app`
-- 本地 Flask 每 5 秒向中心发心跳
-- 中心 Owner 页显示“打开本机 TAA”；最近在线可直达，未在线显示 IDE 启动提示词
-- 支持 `?open=1` 自动跳转本地 UI
-- 安装器把运行时持久化到 `~/.taa-v05/app`，不会随临时目录清理
-- 公开包不含 key / identity / 私有数据
+- 完整 TAA Node：Core + Runtime + `/app` + 默认工具
+- Owner / Node / Agent + claim
+- 本地单一入口：`http://127.0.0.1:6080/app`
+- `/setup/` 首次向导
+- 群聊、频道、帖子、看板、团队、工具、设置
+- weather（无 key 文字；有 key 可选生图）
+- research.ask（DeepSeek 优先、Ali 兜底；无 key 明确提示）
+- 无 agent key 安装
+- Linux/macOS shell 安装器
 
 ## 安装
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/jiyanjiang/team_ai_alice/main/install.sh -o /tmp/taa-v05-install.sh
-bash /tmp/taa-v05-install.sh --center https://alice.loomsci.com
+curl -fsSL https://raw.githubusercontent.com/jiyanjiang/team_ai_alice/main/install.sh -o /tmp/taa-install.sh
+bash /tmp/taa-install.sh
 ```
 
-## 本地控制
+打开：
 
-```bash
-~/.taa-v05/app/taa open
-~/.taa-v05/app/taa status
-~/.taa-v05/app/taa stop
+```text
+http://127.0.0.1:6080/app/bridge
+```
+
+## 回滚
+
+保留：
+
+```text
+taa-node-v05-0.5.1.tar.gz
+taa-node-v05-0.5.0.tar.gz
+taa-complete-0.4.1.tar.gz
 ```
 
 ## 已知限制
 
-- 运行环境由用户自行准备；安装器会创建 `.venv` 并安装 Flask/cryptography。
-- Windows 安装器尚未验证。
-- 浏览器从公网 HTTPS 直接探测 `127.0.0.1` 会被 PNA 拦截；中心通过本地 Flask 心跳判断在线。
-- 不包含中心服务、私有工具或私有数据。
+- 运行环境由用户自行准备 Python 3.10+。
+- 跨 LAN 完整浏览器入口需要 hub token 交接；当前代理层已支持。
+- 工具市场执行未启用。
+- Windows 未验证。
+- Physics World / APS / sources 不在本包。
 
 ## 校验
 
