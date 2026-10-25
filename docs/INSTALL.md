@@ -5,7 +5,7 @@
 ## 1. 前置条件
 
 ```text
-Python 3.10+
+Python 3.10–3.13（推荐 3.12）
 curl
 tar
 可写磁盘空间（建议 ≥1 GB）
@@ -27,6 +27,13 @@ agent key
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/jiyanjiang/team_ai_alice/main/install.sh -o /tmp/taa-install.sh
+bash /tmp/taa-install.sh
+```
+
+如果默认 `python3` 是 3.14，且出现 `ensurepip` / venv 创建失败，改用 Python 3.12：
+
+```bash
+TAA_PYTHON=/opt/homebrew/bin/python3.12 \
 bash /tmp/taa-install.sh
 ```
 

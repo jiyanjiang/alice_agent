@@ -15,7 +15,8 @@
 | 现象 | 处理 |
 |---|---|
 | `SHA256 mismatch` | 停止；不要绕过校验；重新下载安装器/包 |
-| `Python version` 报错 | 升级 Python 到 3.10+ |
+| `Python version` 报错 | 升级 Python 到 3.10–3.13 |
+| `ensurepip` / venv 创建失败（常见于 Python 3.14） | 改用 Python 3.12：`TAA_PYTHON=/opt/homebrew/bin/python3.12 bash /tmp/taa-install.sh` |
 | 依赖安装失败 | 检查网络和 venv；重跑安装器 |
 | 安装器启动失败 | 看 `~/.taa/run/web.log` 最后 30 行 |
 | 安装后页面 404 | 确认端口；打开 `/app/bridge` 而不是 `/` |

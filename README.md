@@ -30,7 +30,7 @@ http://127.0.0.1:6080/app
 
 ```text
 macOS / Linux（Windows 用 WSL2）
-Python 3.10+
+Python 3.10–3.13（推荐 3.12）
 curl、tar
 一个能执行终端命令的 AI IDE（opencode / Qoder / Cursor / Codex / Claude Code 等）
 ```
@@ -47,6 +47,13 @@ curl -fsSL https://raw.githubusercontent.com/jiyanjiang/team_ai_alice/main/insta
 
 ```text
 http://127.0.0.1:6080/app/bridge
+```
+
+如果系统默认 `python3` 是 3.14 且报 `ensurepip` 失败，改用本机 Python 3.12：
+
+```bash
+TAA_PYTHON=/opt/homebrew/bin/python3.12 \
+bash /tmp/taa-install.sh
 ```
 
 ---

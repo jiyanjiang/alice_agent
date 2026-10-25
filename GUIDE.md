@@ -14,7 +14,7 @@
 
 ```text
 一台 macOS / Linux 电脑（Windows 用 WSL2）
-Python 3.10+
+Python 3.10–3.13（推荐 3.12）
 curl、tar
 一个能执行终端命令的 AI IDE
 可选：DeepSeek / 阿里云百炼 / 火山方舟 API Key

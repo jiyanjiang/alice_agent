@@ -12,7 +12,9 @@
 - Windows：使用 WSL2（Ubuntu）或 Git Bash；不要用 cmd.exe 执行 bash 脚本。
 
 要求：
-1. 检查 Python 3.10+、curl、tar。
+1. 检查 Python 3.10–3.13（推荐 3.12）、curl、tar。
+   如果默认 python3 是 3.14 且 venv/ensurepip 失败：
+   TAA_PYTHON=/opt/homebrew/bin/python3.12 bash /tmp/taa-install.sh
 2. 运行：
    curl -fsSL https://raw.githubusercontent.com/jiyanjiang/team_ai_alice/main/install.sh -o /tmp/taa-install.sh
    bash /tmp/taa-install.sh
