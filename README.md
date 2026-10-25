@@ -39,8 +39,10 @@ CLAIM_URL=...
 
 ```bash
 curl -fL https://raw.githubusercontent.com/jiyanjiang/team_ai_alice/main/releases/taa-node-v05-0.5.0.tar.gz -o /tmp/taa-v05.tgz
-mkdir -p /tmp/taa-v05 && tar xzf /tmp/taa-v05.tgz -C /tmp/taa-v05
-/tmp/taa-v05/taa-node-v05/install.sh --center https://dev.alice.loomsci.com
+mkdir -p /tmp/taa-v05 "$HOME/.taa-v05/app"
+tar xzf /tmp/taa-v05.tgz -C /tmp/taa-v05
+cp -R /tmp/taa-v05/taa-node-v05/. "$HOME/.taa-v05/app/"
+"$HOME/.taa-v05/app/install.sh" --center https://dev.alice.loomsci.com
 ```
 
 ## IDE 入口

@@ -16,6 +16,7 @@
 - X25519 + AES-GCM 加密消息
 - bundle export / import / sync
 - 一键安装：自动 init；提供 `--center` 时自动 claim
+- 安装器把运行时持久化到 `~/.taa-v05/app`，不会随临时目录清理
 - `--no-browser` 下打印 `CLAIM_URL`
 - 公开包不含 key / identity / 私有数据
 
