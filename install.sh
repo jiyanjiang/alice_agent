@@ -3,10 +3,10 @@
 # No agent key is required; the Owner claim happens in the browser.
 set -euo pipefail
 
-VERSION="${TAA_VERSION:-1.0.0-beta.1}"
+VERSION="${TAA_VERSION:-1.0.0-beta.2}"
 BASE="${TAA_BASE:-https://raw.githubusercontent.com/jiyanjiang/team_ai_alice/main}"
 URL="${TAA_PACKAGE_URL:-${BASE%/}/releases/taa-${VERSION}.tar.gz}"
-EXPECTED_SHA256="${TAA_PACKAGE_SHA256:-7a3221ffeadd8c3750c9ba5bb3d8b48fc344927454edd217064a033cd1efb529}"
+EXPECTED_SHA256="${TAA_PACKAGE_SHA256:-74157fd4ea492dd4583a53794fd6178d690265a135bc1ac5c97ac2bdc1c455de}"
 
 command -v curl >/dev/null 2>&1 || { echo "x curl is required" >&2; exit 3; }
 command -v tar >/dev/null 2>&1 || { echo "x tar is required" >&2; exit 3; }

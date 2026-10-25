@@ -1,11 +1,11 @@
-# TAA 1.0.0-beta.1 使用说明
+# TAA 1.0.0-beta.2 使用说明
 
-- 产品：TAA 1.0.0-beta.1
+- 产品：TAA 1.0.0-beta.2
 - 运行时：2.2.47
 - 本地入口：`http://127.0.0.1:6080/app`
 - 首次向导：`http://127.0.0.1:6080/setup/`
 - 公测中心：<https://alice.loomsci.com>
-- 公开包：`releases/taa-1.0.0-beta.1.tar.gz`
+- 公开包：`releases/taa-1.0.0-beta.2.tar.gz`
 
 ## 0. 你需要什么
 
@@ -31,7 +31,7 @@ agent key
 把下面整段交给 IDE 的 Agent/终端：
 
 ```text
-请在这台电脑安装 TAA 1.0.0-beta.1：
+请在这台电脑安装 TAA 1.0.0-beta.2：
 1. 运行公开安装器：
    curl -fsSL https://raw.githubusercontent.com/jiyanjiang/team_ai_alice/main/install.sh -o /tmp/taa-install.sh
    bash /tmp/taa-install.sh
@@ -126,15 +126,16 @@ cd ~/.taa/app
 ```text
 [已实现] 公库安装、/setup/ claim、/app、weather CLI、research 工作流
 [已实现] 本地 /app/settings 配置模型 Key
-[部分]   第二台电脑 claim、机器码重置密码、Owner 名片/好友 API
-[部分]   跨 LAN 完整 /app（管理员 header 可用）
-[未闭环] 群聊里 @alice 自动调用 weather / research
-[未闭环] research 自动发论坛并转发群
-[未闭环] 跨 LAN 浏览器无 header 打开
-[未闭环] 不同 Owner / 不同 LAN 的群聊、审批、帖子备份
+[已实现] P2P 事件/附件同步、Ed25519 签名、Owner/组授权、加密备份
+[部分]   第二台电脑 claim、机器码重置密码、Owner 名片/好友
+[部分]   中心组同步（beta）；审批通知只在本地 /app/inbox
+[未闭环] 中心通知端点真实送达（beta.3）
+[未闭环] 跨 LAN 浏览器无 header 打开完整 /app
+[未闭环] 真实双物理机由发布方代跑
+[未闭环] Windows 专门验证
 ```
 
-**1.0.0-beta.1 是公开测试包，不是“所有协作流程已验收”的正式版。**
+**1.0.0-beta.2 是公开测试包，不是“所有协作流程已验收”的正式版。**
 
 ## 6. 第二台电脑（当前说明）
 
@@ -186,8 +187,8 @@ X-Hub-Token: <hub token>
 ## 9. 包大小
 
 ```text
-taa-1.0.0-beta.1.tar.gz       3,182,374 bytes   ~3.0 MiB   完整产品包
-taa-complete-0.4.1.tar.gz     3,156,624 bytes   ~3.0 MiB   legacy 完整包
+taa-1.0.0-beta.2.tar.gz       3,214,869 bytes   ~3.1 MiB   完整产品包
+taa-complete-0.4.1.tar.gz     3,156,624 bytes   ~3.1 MiB   legacy 完整包
 taa-node-v05-0.5.0.tar.gz        25,339 bytes   ~25 KiB    身份模块
 taa-node-v05-0.5.1.tar.gz        27,361 bytes   ~27 KiB    身份模块
 ```

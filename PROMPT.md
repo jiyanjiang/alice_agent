@@ -1,9 +1,9 @@
-# TAA 1.0.0-beta.1 · IDE 首次使用提示词
+# TAA 1.0.0-beta.2 · IDE 首次使用提示词
 
 把下面整段粘贴到 IDE 的 Agent/终端对话中。
 
 ```text
-# TAA 1.0.0-beta.1 初始化
+# TAA 1.0.0-beta.2 初始化
 
 请在这台电脑上安装并启动 TAA。不要要求我复制 key，也不要创建第二个 Owner。
 

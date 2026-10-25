@@ -1,4 +1,4 @@
-# TAA 1.0.0-beta.1 · 公测
+# TAA 1.0.0-beta.2 · 公测
 
 TAA 是装在一台电脑上的本地 Agent 宿主与对等协作节点。
 
@@ -57,13 +57,13 @@ research.ask
 ## 版本
 
 ```text
-产品：TAA 1.0.0-beta.1
+产品：TAA 1.0.0-beta.2
 runtime：2.2.47
 protocol：node-v0.5 / center-v0.5
 schema：1
 ```
 
-包：`releases/taa-1.0.0-beta.1.tar.gz`  
+包：`releases/taa-1.0.0-beta.2.tar.gz`
 校验：`SHA256SUMS`
 
 ## 文档

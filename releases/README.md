@@ -3,13 +3,14 @@
 ## 当前产品主包
 
 ```text
-taa-1.0.0-beta.1.tar.gz
+taa-1.0.0-beta.2.tar.gz
 完整 TAA 产品包
 ```
 
 ## 历史完整包 / 回滚
 
 ```text
+taa-1.0.0-beta.1.tar.gz
 taa-complete-0.4.1.tar.gz
 legacy complete 0.4.1
 ```
