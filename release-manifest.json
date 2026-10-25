@@ -1,12 +1,12 @@
 {
   "product": "TAA Node",
-  "version": "0.5.0",
-  "file": "taa-node-v05-0.5.0.tar.gz",
-  "bytes": 25339,
-  "sha256": "ae4c7731690f3987889a98a3adb2e1ab7f7909a974f4ee3a3e88092f1c356d0f",
-  "source_commit": "2a5834b",
-  "center": "https://dev.alice.loomsci.com",
-  "install": "bash install.sh --center https://dev.alice.loomsci.com",
+  "version": "0.5.1",
+  "file": "taa-node-v05-0.5.1.tar.gz",
+  "bytes": 27361,
+  "sha256": "9ea83e754e5b835678e4e35535624ffc0792f0dddb19c2f10bc427c126a2ffe2",
+  "source_commit": "dd63fe8",
+  "center": "https://alice.loomsci.com",
+  "install": "bash install.sh --center https://alice.loomsci.com",
   "requires": {
     "python": ">=3.10",
     "tools": [

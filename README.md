@@ -13,8 +13,8 @@ bundle export / import / sync
 
 公开包**不需要 agent key**，也不需要登录后复制 key。安装器自动创建本地身份；提供 `--center` 时自动进入浏览器 claim。
 
-- 当前版本：`0.5.0`
-- 公测中心：`https://dev.alice.loomsci.com`
+- 当前版本：`0.5.1`
+- 公测中心：`https://alice.loomsci.com`
 - 本地 UI：`http://127.0.0.1:6099/app`
 - 运行环境：Python 3.10+、`curl`；运行环境由用户自行准备
 
@@ -33,16 +33,20 @@ AUTO_CLAIM=YES
 CLAIM_URL=...
 ```
 
-在浏览器打开 `CLAIM_URL`，登录已有 Owner 或创建 Owner，确认这台电脑。不要创建第二个 Owner 来加入同一账号。
+在浏览器打开 `CLAIM_URL`，登录已有 Owner 或创建 Owner，确认这台电脑。不要创建第二个 Owner 来加入同一账号。claim 成功后安装器会自动启动本地 UI 并打开浏览器；如果浏览器没有打开，运行：
+
+```bash
+~/.taa-v05/app/taa open
+```
 
 也可以先下载包再安装：
 
 ```bash
-curl -fL https://raw.githubusercontent.com/jiyanjiang/team_ai_alice/main/releases/taa-node-v05-0.5.0.tar.gz -o /tmp/taa-v05.tgz
+curl -fL https://raw.githubusercontent.com/jiyanjiang/team_ai_alice/main/releases/taa-node-v05-0.5.1.tar.gz -o /tmp/taa-v05.tgz
 mkdir -p /tmp/taa-v05 "$HOME/.taa-v05/app"
 tar xzf /tmp/taa-v05.tgz -C /tmp/taa-v05
 cp -R /tmp/taa-v05/taa-node-v05/. "$HOME/.taa-v05/app/"
-"$HOME/.taa-v05/app/install.sh" --center https://dev.alice.loomsci.com
+"$HOME/.taa-v05/app/install.sh" --center https://alice.loomsci.com
 ```
 
 ## IDE 入口
@@ -52,7 +56,7 @@ cp -R /tmp/taa-v05/taa-node-v05/. "$HOME/.taa-v05/app/"
 ## 启动本地 UI
 
 ```bash
-~/.taa-v05/app/.venv/bin/python -m taa_node_v05.web --home "$HOME/.taa-v05" --port 6099
+~/.taa-v05/app/taa open
 ```
 
 打开 <http://127.0.0.1:6099/app>。
@@ -65,7 +69,7 @@ cp -R /tmp/taa-v05/taa-node-v05/. "$HOME/.taa-v05/app/"
 ## 版本与校验
 
 ```text
-TAA Node 0.5.0
+TAA Node 0.5.1
 ```
 
 ```bash

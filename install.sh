@@ -4,11 +4,11 @@
 # No agent key is required; the Owner claim happens in the browser.
 set -euo pipefail
 
-VERSION="${TAA_V05_VERSION:-0.5.0}"
-CENTER="${TAA_CENTER:-https://dev.alice.loomsci.com}"
+VERSION="${TAA_V05_VERSION:-0.5.1}"
+CENTER="${TAA_CENTER:-https://alice.loomsci.com}"
 BASE="${TAA_V05_BASE:-https://raw.githubusercontent.com/jiyanjiang/team_ai_alice/main}"
 URL="${TAA_V05_PACKAGE_URL:-${BASE%/}/releases/taa-node-v05-${VERSION}.tar.gz}"
-EXPECTED_SHA256="${TAA_V05_SHA256:-ae4c7731690f3987889a98a3adb2e1ab7f7909a974f4ee3a3e88092f1c356d0f}"
+EXPECTED_SHA256="${TAA_V05_SHA256:-9ea83e754e5b835678e4e35535624ffc0792f0dddb19c2f10bc427c126a2ffe2}"
 APP="${TAA_V05_APP:-$HOME/.taa-v05/app}"
 TAA_HOME="${TAA_V05_HOME:-$HOME/.taa-v05}"
 _prev=""
@@ -25,7 +25,7 @@ Usage:
   ./install.sh [options]
 
 Options:
-  --center URL     center base URL (default: $TAA_CENTER or https://dev.alice.loomsci.com)
+  --center URL     center base URL (default: $TAA_CENTER or https://alice.loomsci.com)
   --home DIR       local identity directory (default: $HOME/.taa-v05)
   --init-only      install/init only; do not claim
   --no-browser     print CLAIM_URL instead of opening a browser
@@ -33,7 +33,7 @@ Options:
 
 Environment:
   TAA_CENTER             center base URL
-  TAA_V05_VERSION        release version (default: 0.5.0)
+  TAA_V05_VERSION        release version (default: 0.5.1)
   TAA_V05_PACKAGE_URL    override package download URL
   TAA_V05_SHA256         override expected package SHA256
   TAA_V05_APP            runtime install directory (default: $HOME/.taa-v05/app)
@@ -86,4 +86,4 @@ echo "[3/3] running packaged installer"
 "$APP/install.sh" "$@"
 
 echo "TAA_APP=$APP"
-echo "TAA_UI=$APP/.venv/bin/python -m taa_node_v05.web --home \"$TAA_HOME\" --port 6099"
+echo "TAA_UI=TAA_V05_HOME=\"$TAA_HOME\" \"$APP/taa\" open"

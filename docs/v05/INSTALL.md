@@ -3,15 +3,15 @@
 ## 包
 
 ```text
-releases/taa-node-v05-0.5.0.tar.gz
-SHA256: ae4c7731690f3987889a98a3adb2e1ab7f7909a974f4ee3a3e88092f1c356d0f
+releases/taa-node-v05-0.5.1.tar.gz
+SHA256: 9ea83e754e5b835678e4e35535624ffc0792f0dddb19c2f10bc427c126a2ffe2
 ```
 
 ## 方式一：公开安装器
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/jiyanjiang/team_ai_alice/main/install.sh -o /tmp/taa-v05-install.sh
-bash /tmp/taa-v05-install.sh --center https://dev.alice.loomsci.com
+bash /tmp/taa-v05-install.sh --center https://alice.loomsci.com
 ```
 
 安装器会校验包 SHA256，然后运行包内 `install.sh`。
@@ -19,12 +19,12 @@ bash /tmp/taa-v05-install.sh --center https://dev.alice.loomsci.com
 ## 方式二：手动下载
 
 ```bash
-curl -fL https://raw.githubusercontent.com/jiyanjiang/team_ai_alice/main/releases/taa-node-v05-0.5.0.tar.gz -o /tmp/taa-v05.tgz
+curl -fL https://raw.githubusercontent.com/jiyanjiang/team_ai_alice/main/releases/taa-node-v05-0.5.1.tar.gz -o /tmp/taa-v05.tgz
 shasum -a 256 /tmp/taa-v05.tgz
 mkdir -p /tmp/taa-v05 "$HOME/.taa-v05/app"
 tar xzf /tmp/taa-v05.tgz -C /tmp/taa-v05
 cp -R /tmp/taa-v05/taa-node-v05/. "$HOME/.taa-v05/app/"
-"$HOME/.taa-v05/app/install.sh" --center https://dev.alice.loomsci.com
+"$HOME/.taa-v05/app/install.sh" --center https://alice.loomsci.com
 ```
 
 ## 安装器参数
@@ -49,7 +49,7 @@ CLAIM_URL=...
 浏览器完成 claim 后：
 
 ```bash
-~/.taa-v05/app/.venv/bin/python -m taa_node_v05 show --home "$HOME/.taa-v05"
+~/.taa-v05/app/taa status
 ```
 
 ## 失败时

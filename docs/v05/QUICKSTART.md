@@ -4,7 +4,7 @@
 
 - Python 3.10+
 - `curl`、`tar`
-- 能访问公测中心 `https://dev.alice.loomsci.com`
+- 能访问公测中心 `https://alice.loomsci.com`
 
 运行环境由用户自行准备；本包不包含 Python 运行时。
 
@@ -12,7 +12,7 @@
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/jiyanjiang/team_ai_alice/main/install.sh -o /tmp/taa-v05-install.sh
-bash /tmp/taa-v05-install.sh --center https://dev.alice.loomsci.com
+bash /tmp/taa-v05-install.sh --center https://alice.loomsci.com
 ```
 
 安装器会：
@@ -29,7 +29,7 @@ bash /tmp/taa-v05-install.sh --center https://dev.alice.loomsci.com
 ## 启动本地 UI
 
 ```bash
-~/.taa-v05/app/.venv/bin/python -m taa_node_v05.web --home "$HOME/.taa-v05" --port 6099
+~/.taa-v05/app/taa open
 ```
 
 打开 <http://127.0.0.1:6099/app>。
@@ -37,7 +37,7 @@ bash /tmp/taa-v05-install.sh --center https://dev.alice.loomsci.com
 ## 验证
 
 ```bash
-~/.taa-v05/app/.venv/bin/python -m taa_node_v05 show --home "$HOME/.taa-v05"
+~/.taa-v05/app/taa status
 ```
 
 确认：

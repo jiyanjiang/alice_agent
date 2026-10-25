@@ -11,7 +11,7 @@
 - 这台电脑已有 Python 3.10+ 和 curl。
 - 允许访问：
   - GitHub raw：https://raw.githubusercontent.com/jiyanjiang/team_ai_alice/main
-  - 公测中心：https://dev.alice.loomsci.com
+  - 公测中心：https://alice.loomsci.com
 
 ## 步骤
 
@@ -21,7 +21,7 @@ curl -fsSL https://raw.githubusercontent.com/jiyanjiang/team_ai_alice/main/insta
 
 2. 运行安装器。它会自动创建本地身份；提供中心后会自动启动 claim：
 
-bash /tmp/taa-v05-install.sh --center https://dev.alice.loomsci.com
+bash /tmp/taa-v05-install.sh --center https://alice.loomsci.com
 
 3. 安装器会输出 AUTO_INIT=YES、AUTO_CLAIM=YES 和 CLAIM_URL。
    把 CLAIM_URL 原样展示给我；不要自己创建 Owner，不要打印任何 key 或密码。
@@ -30,7 +30,7 @@ bash /tmp/taa-v05-install.sh --center https://dev.alice.loomsci.com
 
 5. 检查本地状态：
 
-~/.taa-v05/app/.venv/bin/python -m taa_node_v05 show --home "$HOME/.taa-v05"
+~/.taa-v05/app/taa status
 
 确认：
 - node_status = active
@@ -39,7 +39,7 @@ bash /tmp/taa-v05-install.sh --center https://dev.alice.loomsci.com
 
 6. 启动本地 UI：
 
-~/.taa-v05/app/.venv/bin/python -m taa_node_v05.web --home "$HOME/.taa-v05" --port 6099
+~/.taa-v05/app/taa open
 
 打开 http://127.0.0.1:6099/app ，确认页面显示已连接和 active。
 

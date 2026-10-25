@@ -4,7 +4,7 @@
 
 ```text
 1. 下载公开 install.sh
-2. 运行 --center https://dev.alice.loomsci.com
+2. 运行 --center https://alice.loomsci.com
 3. 把 CLAIM_URL 展示给用户
 4. 用户浏览器登录/注册 Owner 并确认电脑
 5. show 检查 active + center.owner_id

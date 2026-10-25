@@ -3,7 +3,7 @@
 公测中心：
 
 ```text
-https://dev.alice.loomsci.com
+https://alice.loomsci.com
 ```
 
 ## 关系
