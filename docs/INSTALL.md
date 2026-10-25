@@ -1,62 +1,228 @@
-# INSTALL · 安装
+# INSTALL · 安装 TAA 1.0.0-beta.2
 
-## 前置
+本页是详细安装说明，适用于 macOS / Linux / Windows(WSL2)。
 
-- Python 3.11+；
-- `curl`；
-- 一个可用的 agent key（来自中心）；
-- 可选：同 LAN 的在线 TAA 节点。
-
-公开包下载不需要 key；安装/激活必须有 agent key。
-
-## 公开包安装
-
-```bash
-curl -fL https://raw.githubusercontent.com/jiyanjiang/team_ai_alice/main/releases/taa-complete-0.4.1.tar.gz -o /tmp/taa.tgz
-mkdir -p /tmp/taa-install && tar xzf /tmp/taa.tgz -C /tmp/taa-install
-/tmp/taa-install/taa_agent/install.sh --key taa_xxx
-```
-
-默认中心是 `https://alice.loomsci.com`；可用 `--base` 指定其他中心。
-
-## 本地节点优先
-
-同 LAN 有在线节点时：
-
-```bash
-curl -fL "http://<node-ip>:6080/install.sh" -o /tmp/taa-install.sh
-bash /tmp/taa-install.sh --key taa_xxx   --from "http://<node-ip>:6080/dist/taa-complete-latest.tar.gz"
-```
-
-`--from` 可以写多个来源，用逗号分隔；前一个失败自动尝试下一个，GitHub 作为兜底。
-
-## 失败码
+## 1. 前置条件
 
 ```text
-exit 2  缺少 agent key，不写 config
-exit 3  key 无效/中心不可达，不写 config
-exit 0  key 校验通过，已写 config 并完成 handshake
+Python 3.10+
+curl
+tar
+可写磁盘空间（建议 ≥1 GB）
+可访问 GitHub raw
 ```
 
-“解压了文件”不等于安装完成；只有 key 校验和 handshake 成功才算完成。
+不需要：
 
-## 安装后
+```text
+agent key
+手工创建数据库
+手工初始化 Node
+第二个端口
+```
+
+---
+
+## 2. 默认安装
 
 ```bash
-~/.taa/app/bin/taa whoami
-~/.taa/app/bin/taa setup
-~/.taa/app/bin/taa doctor
-~/.taa/app/bin/taa run
+curl -fsSL https://raw.githubusercontent.com/jiyanjiang/team_ai_alice/main/install.sh -o /tmp/taa-install.sh
+bash /tmp/taa-install.sh
 ```
 
-本地 core：
+安装器执行：
+
+```text
+1. 下载 beta.2 包
+2. 校验 SHA256
+3. 安装到 ~/.taa/app
+4. 创建 ~/.taa/venv
+5. 安装 Python 依赖
+6. 启动本地 Flask 6080
+```
+
+打开：
+
+```text
+http://127.0.0.1:6080/app/bridge
+```
+
+`/setup/` 由本人完成 Owner 创建/认领。不要复制 key，不要创建第二个 Owner。
+
+---
+
+## 3. 自定义安装路径
+
+### 3.1 `--home`
 
 ```bash
-~/.local/bin/taa-core
-# 或
-~/.taa/app/bin/taa-core
+bash /tmp/taa-install.sh --home "$HOME/Applications/taa"
 ```
 
-## 第二台电脑
+目录：
 
-在中心新建第二个 agent + 第二把 key；不要复制第一台 key。第二台优先用上面的本地节点命令。
+```text
+$HOME/Applications/taa/app
+$HOME/Applications/taa/venv
+$HOME/Applications/taa/run
+```
+
+### 3.2 `TAA_HOME`
+
+```bash
+TAA_HOME="$HOME/Applications/taa" bash /tmp/taa-install.sh
+```
+
+### 3.3 路径规则
+
+```text
+必须是可写目录
+建议使用绝对路径
+beta 不保证带空格/中文路径
+不要用 /tmp（重启会丢）
+不要用 /opt（权限复杂）
+Windows 用 WSL2 的 /home/<user>/taa
+```
+
+---
+
+## 4. 端口
+
+默认 `6080`。
+
+如果被占用：
+
+```bash
+bash /tmp/taa-install.sh --port 6081
+```
+
+访问：
+
+```text
+http://127.0.0.1:6081/app/bridge
+```
+
+自定义路径 + 端口：
+
+```bash
+bash /tmp/taa-install.sh --home "$HOME/Applications/taa" --port 6081
+```
+
+---
+
+## 5. Windows / WSL2
+
+```text
+1. 安装 WSL2 + Ubuntu
+2. 在 Ubuntu 终端运行安装器
+3. 浏览器在 Windows 侧打开 http://127.0.0.1:6080/app/bridge
+```
+
+不要把安装目录放在 `/mnt/c`（性能与权限都不稳）。
+Windows 原生（非 WSL）未专门验证。
+
+---
+
+## 6. 安装后自检
+
+### 6.1 状态
+
+```bash
+~/.taa/app/taa status
+```
+
+### 6.2 本地页面
+
+```bash
+curl -fsS http://127.0.0.1:6080/app/chats | head
+```
+
+### 6.3 控制命令
+
+```bash
+~/.taa/app/taa open
+~/.taa/app/taa status
+~/.taa/app/taa stop
+```
+
+自定义路径：
+
+```bash
+"$HOME/Applications/taa/app/taa" status
+```
+
+---
+
+## 7. 退出码与失败处理
+
+```text
+0  成功
+2  参数错误（如未知参数）
+3  Python / 依赖前置不满足
+4  包 SHA256 不匹配或包结构异常
+1  启动失败（查看 ~/.taa/run/web.log）
+```
+
+失败时不要：
+
+```text
+不要跳过 SHA256
+不要手工改包
+不要创建第二个 Owner
+不要把 key/密码贴到聊天
+```
+
+报告时附：
+
+```text
+系统版本
+Python 版本
+安装命令
+最后 30 行日志
+```
+
+日志：
+
+```text
+~/.taa/run/web.log
+```
+
+---
+
+## 8. 升级
+
+先备份/停止：
+
+```bash
+~/.taa/app/taa stop
+```
+
+重新运行安装器。默认会更新运行时代码；数据目录不会主动删除。
+
+---
+
+## 9. 回滚 beta.1
+
+```bash
+TAA_VERSION=1.0.0-beta.1 \
+TAA_PACKAGE_SHA256=7a3221ffeadd8c3750c9ba5bb3d8b48fc344927454edd217064a033cd1efb529 \
+bash /tmp/taa-install.sh
+```
+
+---
+
+## 10. 卸载
+
+```bash
+~/.taa/app/taa stop
+rm -rf ~/.taa
+```
+
+自定义路径：
+
+```bash
+"$HOME/Applications/taa/app/taa" stop
+rm -rf "$HOME/Applications/taa"
+```
+
+删除前确认备份；不要删除他人的 `~/.taa`。

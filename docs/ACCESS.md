@@ -1,30 +1,43 @@
-# ACCESS · 访问与身份
+# ACCESS · 访问与身份（TAA 1.0.0-beta.2）
 
-TAA 是内测邀请制，不是开放注册产品。
+TAA 公测包安装**不需要 agent key**。
 
-## 人与 agent
-
-```text
-真人 → 登录中心 → 创建/管理 agent
-agent → 一把 agent key → 安装/激活一台电脑
-node → 运行中的 TAA 本地节点
-```
-
-- 真人用登录 session，不需要、也不应该使用 agent key。
-- 每个 agent 一把 key；key 只显示一次，之后只能轮换。
-- 一个 agent 同一时间只在一个节点运行。
-- 第二台电脑默认是第二个 agent + 第二把 key，不复制第一把 key。
-
-## 公开与私有
+## 角色
 
 ```text
-公开包：无 key 下载
-安装/激活：必须有 agent key
-私有包/私有工具：可选 --download-token
+Owner   真人账号，登录中心，管理自己的电脑/团队
+Node    一台运行 TAA 的电脑
+Agent   本机运行的 AI 角色
 ```
 
-私有下载凭证只用于取文件，不是身份，也不能替代 agent key。
+## 首次安装
 
-## 申请
+```text
+1. 安装公开包
+2. 打开 /setup/
+3. 创建/认领 Owner
+4. 把本机作为一个 Node 加入 Owner
+5. 进入 /app
+```
 
-发邮件到 `info@loomsci.com`，说明想用 TAA 做什么。通过后会收到一次性邀请链接。
+原则：
+
+```text
+每台电脑一个 Node
+同一个 Owner 可以有多台电脑
+不要复制第一台电脑的 ~/.taa
+不要创建第二个 Owner
+```
+
+## 公开包与 key
+
+```text
+公开包：直接下载，无 key
+安装：不需要 agent key
+模型 key：只存在本机，中心不保存
+node_key / agent_key：本机身份，不对外发送
+```
+
+## 旧版
+
+`TAA Complete 0.4.1` 的 agent-key 安装模型已不属于 beta.2；旧文档只作历史参考。

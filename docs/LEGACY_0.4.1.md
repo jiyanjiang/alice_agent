@@ -10,4 +10,4 @@ mkdir -p /tmp/taa-install && tar xzf /tmp/taa.tgz -C /tmp/taa-install
 /tmp/taa-install/taa_agent/install.sh --key taa_xxx
 ```
 
-0.4.1 的旧文档（ACCESS / INVITE / KEY / AGENT 等）仍在 `docs/` 下，仅适用于旧版。
+0.4.1 仅用于历史兼容；新用户请看 [INSTALL](INSTALL.md) / [QUICKSTART](QUICKSTART.md) / [README](README.md)。

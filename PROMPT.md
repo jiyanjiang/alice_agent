@@ -1,50 +1,87 @@
-# TAA 1.0.0-beta.2 · IDE 首次使用提示词
+# TAA 1.0.0-beta.2 · AI IDE 安装提示词
 
-把下面整段粘贴到 IDE 的 Agent/终端对话中。
+复制下面整段给 IDE 的 Agent（opencode / Qoder / Cursor / Codex / Claude Code 等）。
+
+## 主提示词（默认路径）
 
 ```text
-# TAA 1.0.0-beta.2 初始化
+请在本机安装 TAA 1.0.0-beta.2 公测包。
 
-请在这台电脑上安装并启动 TAA。不要要求我复制 key，也不要创建第二个 Owner。
+先检测系统：macOS / Linux / Windows。
+- macOS / Linux：使用系统 shell。
+- Windows：使用 WSL2（Ubuntu）或 Git Bash；不要用 cmd.exe 执行 bash 脚本。
 
-## 前提
-- 这台电脑已有 Python 3.10+、curl、tar。
-- 允许访问：
-  - GitHub raw：https://raw.githubusercontent.com/jiyanjiang/team_ai_alice/main
-  - 公测中心：https://alice.loomsci.com
+要求：
+1. 检查 Python 3.10+、curl、tar。
+2. 运行：
+   curl -fsSL https://raw.githubusercontent.com/jiyanjiang/team_ai_alice/main/install.sh -o /tmp/taa-install.sh
+   bash /tmp/taa-install.sh
+3. 安装后打开：
+   http://127.0.0.1:6080/app/bridge
+   把 /setup/ 页面留给我本人完成 Owner 创建/认领。
+4. 不要要求我复制 node_key / agent_key。
+5. 不要创建第二个 Owner。
+6. 不要在聊天、日志、截图里输出任何 key、密码、内网地址。
+7. 不要把 6080 暴露到公网。
+8. 如果 SHA256 不匹配、安装失败或 6080 被占用：
+   停止并报告完整错误；不要跳过校验。
+9. 如果 6080 被占用：
+   bash /tmp/taa-install.sh --port 6081
+   然后访问 http://127.0.0.1:6081/app/bridge。
+10. 安装后自检：
+    ~/.taa/app/taa status
+    curl -fsS http://127.0.0.1:6080/app/chats | head
+    报告系统、Python 版本、安装结果、本地 URL、失败时最后 30 行日志。
+11. 如果 IDE 没有终端执行权限，只输出命令和步骤，不要假装已安装。
+```
 
-## 步骤
+## 自定义路径
 
-1. 下载公开安装器：
+```text
+请把 TAA 1.0.0-beta.2 安装到 $HOME/Applications/taa：
 
 curl -fsSL https://raw.githubusercontent.com/jiyanjiang/team_ai_alice/main/install.sh -o /tmp/taa-install.sh
+bash /tmp/taa-install.sh --home "$HOME/Applications/taa"
 
-2. 运行安装器。它会创建 ~/.taa/venv、安装运行时、启动本地 Flask：
+安装后打开 http://127.0.0.1:6080/app/bridge
+并按页面提示完成注册和使用。
 
-bash /tmp/taa-install.sh
+要求：
+- 不复制 key、不创建第二个 Owner；
+- 不输出密码/key；
+- 安装后执行：
+  "$HOME/Applications/taa/app/taa" status
+- 失败时报告完整错误，不要跳过 SHA256。
+```
 
-3. 打开本地入口（如果安装器没有自动打开）：
+## 最短提示词
 
-http://127.0.0.1:6080/app/bridge
+```text
+请在本机安装 TAA 1.0.0-beta.2 公测包：
 
-首次会进入 /setup/。把页面展示给我，不要自己创建 Owner。
+curl -fsSL https://raw.githubusercontent.com/jiyanjiang/team_ai_alice/main/install.sh -o /tmp/taa-install.sh && bash /tmp/taa-install.sh
 
-4. 我在浏览器完成 Owner 登录/注册，并把这台电脑加入已有 Owner。
-   不要创建第二个 Owner。
+安装后打开 http://127.0.0.1:6080/app/bridge
+并按提示完成注册和使用。
 
-5. 检查本地状态：
+不复制 key；不创建第二个 Owner；不输出密码/key；失败时停止并报告完整错误。
+```
 
-~/.taa/app/taa status
-~/.taa/app/taa open
+## 真人操作
 
-打开 http://127.0.0.1:6080/app/bridge，确认页面可以进入 /app。
+```text
+1. 把提示词粘贴给 IDE Agent。
+2. 浏览器打开 http://127.0.0.1:6080/app/bridge
+3. 在 /setup/ 完成 Owner 创建/认领。
+4. 回到 IDE/终端，让 Agent 执行 taa status。
+```
 
-6. 报告：
-- 安装是否成功
-- 本地 UI 是否可访问
-- 是否出现过 key/password 泄露（应为 NO）
-- 失败时附完整错误
+## 安全红线
 
-不要输出 node_key、agent_key、Owner 密码或临时密码。
-不要手工 init，不要手工 claim；如果 /setup/ 失败，停止并报告。
+```text
+不要把 node_key / agent_key / 密码贴到聊天
+不要把 ~/.taa 上传到公开仓库
+不要把 6080 暴露到公网
+不要跳过 SHA256
+不要用第三方不明安装包
 ```

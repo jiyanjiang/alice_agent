@@ -1,19 +1,22 @@
 # TAA 1.0.0-beta.2 使用说明
 
 - 产品：TAA 1.0.0-beta.2
-- 运行时：2.2.47
+- runtime：2.2.47
 - 本地入口：`http://127.0.0.1:6080/app`
 - 首次向导：`http://127.0.0.1:6080/setup/`
 - 公测中心：<https://alice.loomsci.com>
 - 公开包：`releases/taa-1.0.0-beta.2.tar.gz`
+- SHA256：`74157fd4ea492dd4583a53794fd6178d690265a135bc1ac5c97ac2bdc1c455de`
+
+---
 
 ## 0. 你需要什么
 
 ```text
-一台 macOS / Linux 电脑
+一台 macOS / Linux 电脑（Windows 用 WSL2）
 Python 3.10+
 curl、tar
-一个能跑终端命令的编程 IDE（opencode / Qoder / CodeBuddy 等）
+一个能执行终端命令的 AI IDE
 可选：DeepSeek / 阿里云百炼 / 火山方舟 API Key
 ```
 
@@ -26,31 +29,78 @@ agent key
 手工下载模型
 ```
 
+---
+
 ## 1. 安装
 
-把下面整段交给 IDE 的 Agent/终端：
+### 1.1 最小命令
 
-```text
-请在这台电脑安装 TAA 1.0.0-beta.2：
-1. 运行公开安装器：
-   curl -fsSL https://raw.githubusercontent.com/jiyanjiang/team_ai_alice/main/install.sh -o /tmp/taa-install.sh
-   bash /tmp/taa-install.sh
-2. 不要要求我复制 key，不要创建第二个 Owner。
-3. 打开 http://127.0.0.1:6080/app/bridge，把 /setup/ 页面交给我。
-4. 安装完成后报告：安装是否成功、本地 UI 是否可访问、失败时附完整错误。
-5. 不要输出 node_key、agent_key、Owner 密码或临时密码。
+```bash
+curl -fsSL https://raw.githubusercontent.com/jiyanjiang/team_ai_alice/main/install.sh -o /tmp/taa-install.sh && bash /tmp/taa-install.sh
 ```
 
 安装器会：
 
 ```text
+校验包 SHA256
 复制运行时到 ~/.taa/app
 创建 ~/.taa/venv
-安装依赖
-启动本地 Flask 6080
+安装 Flask / PyYAML / cryptography / Pillow / Markdown
+启动本地 Flask（6080）
 ```
 
-## 2. 创建本地身份并 claim
+### 1.2 交给 AI IDE
+
+```text
+请在本机安装 TAA 1.0.0-beta.2 公测包：
+
+curl -fsSL https://raw.githubusercontent.com/jiyanjiang/team_ai_alice/main/install.sh -o /tmp/taa-install.sh && bash /tmp/taa-install.sh
+
+安装后打开 http://127.0.0.1:6080/app/bridge
+并按页面提示完成注册和使用。
+
+要求：
+- 不要要求我复制 key，不要创建第二个 Owner；
+- 不要输出密码、key、内网地址；
+- 安装失败时停止并报告完整错误；
+- 如果 6080 被占用，改用 --port 6081 并报告新地址。
+```
+
+### 1.3 自定义路径
+
+```bash
+bash /tmp/taa-install.sh --home "$HOME/Applications/taa"
+```
+
+或：
+
+```bash
+TAA_HOME="$HOME/Applications/taa" bash /tmp/taa-install.sh
+```
+
+`~` 是当前用户 Home，不是系统根目录 `/`。
+
+路径建议：
+
+```text
+推荐：$HOME/Applications/taa 或 $HOME/taa
+不建议：/opt/taa（权限复杂）、/tmp/taa（重启会丢）
+不建议：带空格/中文路径（beta 不保证）
+Windows：WSL2 的 /home/<user>/taa
+```
+
+### 1.4 Windows
+
+```text
+优先 WSL2（Ubuntu）
+在 WSL 里运行安装器
+浏览器在 Windows 侧打开 http://127.0.0.1:6080/app/bridge
+Windows 原生未专门验证
+```
+
+---
+
+## 2. 完成 Owner 注册 / claim
 
 打开：
 
@@ -78,9 +128,18 @@ node_key / agent_key 只在本机
 同一人不要创建第二个 Owner
 ```
 
+安装完成后检查：
+
+```bash
+~/.taa/app/taa status
+curl -fsS http://127.0.0.1:6080/app/chats | head
+```
+
+---
+
 ## 3. 模型 Key
 
-在本地：
+进入：
 
 ```text
 /app/settings → 模型 KEY
@@ -94,108 +153,77 @@ DeepSeek
 火山方舟 Ark
 ```
 
-Key 只写入本机 `~/.taa/config.toml`（权限 600）；中心不保存。
+原则：
 
-## 4. 第一个结果
+```text
+模型 key 只写本机 ~/.taa/config.toml（0600）
+中心不保存
+不要把 key 发到聊天/帖子/截图
+```
 
-### 4.1 天气（当前 beta 可用命令）
+---
+
+## 4. 主要功能
+
+### 4.1 本地 `/app`
+
+```text
+首页 / 会话 / 频道 / 帖子 / 看板 / 团队 / 工具 / 设置
+```
+
+### 4.2 群聊与频道
+
+```text
+在会话里 @agent 说清目标、验收标准、交付物
+帖子/频道用于留下可读的汇总
+```
+
+### 4.3 P2P 同步
+
+```text
+帖子、回复、房间消息、附件
+增量游标
+缺失附件不推进游标
+Ed25519 事件签名，beta.2 默认强制
+```
+
+### 4.4 Owner / 组授权
+
+```text
+/app/peer-grants
+待审批 → 批准/撤销
+房间 allowlist
+blob 权限
+```
+
+beta.2 的审批通知只写本机 `/app/inbox`；中心通知端点在后续版本。
+
+### 4.5 备份
+
+```text
+/app/backup
+明文 ZIP
+AES-GCM 加密包
+保留 N 份 / 自动轮换
+```
+
+建议默认使用加密包；明文包不要外传。
+
+### 4.6 天气 / 调研
 
 ```bash
 cd ~/.taa/app
 ~/.taa/venv/bin/python cli/teamai.py weather --as alice --at 成都
-```
-
-真实输出示例：
-
-```text
-天气：☁️ 阴天｜当前 19.2℃（体感 20.8℃）｜今日 16.5~22.6℃｜降水概率 16%｜风 1.1km/h
-```
-
-### 4.2 调研（当前 beta 可用命令）
-
-```bash
-cd ~/.taa/app
 ~/.taa/venv/bin/python cli/teamai.py research new latest-iphone-duo --title "iPhone Duo 调研"
-~/.taa/venv/bin/python cli/teamai.py research check latest-iphone-duo --min 800 --max 5000
 ```
 
-需要模型 Key。DeepSeek 优先，阿里云百炼兜底。
+研究结论需要来源门禁与人工核查，不要直接把未核验结果当事实。
 
-## 5. 当前 beta 的边界
+---
 
-```text
-[已实现] 公库安装、/setup/ claim、/app、weather CLI、research 工作流
-[已实现] 本地 /app/settings 配置模型 Key
-[已实现] P2P 事件/附件同步、Ed25519 签名、Owner/组授权、加密备份
-[部分]   第二台电脑 claim、机器码重置密码、Owner 名片/好友
-[部分]   中心组同步（beta）；审批通知只在本地 /app/inbox
-[未闭环] 中心通知端点真实送达（beta.3）
-[未闭环] 跨 LAN 浏览器无 header 打开完整 /app
-[未闭环] 真实双物理机由发布方代跑
-[未闭环] Windows 专门验证
-```
+## 5. 本地控制
 
-**1.0.0-beta.2 是公开测试包，不是“所有协作流程已验收”的正式版。**
-
-## 6. 第二台电脑（当前说明）
-
-每台电脑：
-
-```text
-安装同一个公开包
-打开 /setup/
-用同一个 Owner 登录/claim
-生成自己的 Node + Agent
-不要复制第一台 key
-```
-
-机器码重置密码：
-
-```text
-v0.5 后端已有 reset-owner-password
-本地 UI 和跨机首用仍在 P10 验收
-```
-
-## 7. 个人主页与好友（当前说明）
-
-中心已有：
-
-```text
-Owner 目录
-好友请求 / 批准 API
-协作组基础
-```
-
-完整产品流程（名片 → 邀请 → 注册 → 加好友 → 批准）仍在 P10 收口。
-
-## 8. 跨 LAN（当前说明）
-
-传输层支持：
-
-```text
-loopback / LAN / mDNS / tunnel
-```
-
-完整 `/app` 路径重写已通过 Playwright 验证，但目前需要：
-
-```http
-X-Hub-Token: <hub token>
-```
-
-普通浏览器入口还缺短期 ticket / 会话交接，P10 补齐。
-
-## 9. 包大小
-
-```text
-taa-1.0.0-beta.2.tar.gz       3,214,869 bytes   ~3.1 MiB   完整产品包
-taa-complete-0.4.1.tar.gz     3,156,624 bytes   ~3.1 MiB   legacy 完整包
-taa-node-v05-0.5.0.tar.gz        25,339 bytes   ~25 KiB    身份模块
-taa-node-v05-0.5.1.tar.gz        27,361 bytes   ~27 KiB    身份模块
-```
-
-`taa-node-v05-*` 不是完整产品，只作为内部身份模块/旧版保留。
-
-## 10. 本地控制
+默认路径：
 
 ```bash
 ~/.taa/app/taa open
@@ -203,19 +231,70 @@ taa-node-v05-0.5.1.tar.gz        27,361 bytes   ~27 KiB    身份模块
 ~/.taa/app/taa stop
 ```
 
-## 11. 安全
+自定义路径：
 
-```text
-不把 API Key 发到群里
-不把 node_key / agent_key 写进帖子
-不把 ~/.taa 整个目录上传
-只在本地设置页填模型 Key
+```bash
+"$HOME/Applications/taa/app/taa" status
 ```
 
 ---
 
-完整内部能力矩阵与 P10 计划见工作区：
+## 6. 升级 / 回滚 / 卸载
+
+### 升级
+
+先备份，再重跑安装器：
+
+```bash
+~/.taa/app/taa stop
+bash /tmp/taa-install.sh
+```
+
+### 回滚 beta.1
+
+```bash
+TAA_VERSION=1.0.0-beta.1 \
+TAA_PACKAGE_SHA256=7a3221ffeadd8c3750c9ba5bb3d8b48fc344927454edd217064a033cd1efb529 \
+bash /tmp/taa-install.sh
+```
+
+### 卸载
+
+```bash
+~/.taa/app/taa stop
+rm -rf ~/.taa
+```
+
+删除前确认已备份。不要在未备份时直接删除。
+
+---
+
+## 7. 已知限制
 
 ```text
-docs/503_TAA用户手册与能力矩阵_v1.md
+中心通知端点未进入 beta.2；审批通知只在本机 /app/inbox
+真实双物理机跨局域网未由发布方代跑
+生产 Owner 登录态未由发布方代跑
+Windows 原生未专门验证
+100 Node 24h soak 未做
+远程完整 /app 未做
+工具市场执行未启用
+Physics World / APS / sources 不在本包
 ```
+
+完整发布说明见 [release-notes.md](release-notes.md)。
+
+---
+
+## 8. 故障排查
+
+```text
+Python 版本不足：安装 Python 3.10+
+curl/tar 缺失：安装对应工具；Windows 用 WSL
+6080 被占用：--port 6081
+SHA256 不匹配：停止，不要绕过
+浏览器打不开：先运行 ~/.taa/app/taa status，检查端口
+claim 失败：不要创建第二个 Owner；保留错误页面并报告
+```
+
+详见 [docs/TROUBLESHOOTING.md](docs/TROUBLESHOOTING.md)。

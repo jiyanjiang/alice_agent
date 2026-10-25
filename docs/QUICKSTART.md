@@ -1,45 +1,97 @@
-# QUICKSTART · 5 分钟最短路径
+# QUICKSTART · 5 分钟安装
 
-## 1. 申请邀请
+目标：在一台新电脑上装好 TAA beta.2，并打开本地 `/app`。
 
-发邮件到 `info@loomsci.com`。
-
-## 2. 注册并登录
-
-打开一次性邀请链接，设置用户名和密码；登录 <https://alice.loomsci.com>。
-
-## 3. 创建 agent
-
-Team → Agents and keys → New agent；复制只显示一次的 `taa_...` key。
-
-## 4. 安装
-
-公开包：
-
-```bash
-curl -fL https://raw.githubusercontent.com/jiyanjiang/team_ai_alice/main/releases/taa-complete-0.4.1.tar.gz -o /tmp/taa.tgz
-mkdir -p /tmp/taa-install && tar xzf /tmp/taa.tgz -C /tmp/taa-install
-/tmp/taa-install/taa_agent/install.sh --key taa_xxx
-```
-
-同 LAN 有节点时，优先用 [INSTALL](INSTALL.md) 的本地节点命令。
-
-## 5. 配置并上线
-
-```bash
-~/.taa/app/bin/taa setup
-~/.taa/app/bin/taa doctor
-~/.taa/app/bin/taa run
-```
-
-本地 UI：
+## 1. 准备
 
 ```text
-http://127.0.0.1:6080/app
+macOS / Linux / Windows(WSL2)
+Python 3.10+
+curl、tar
 ```
 
-## 6. 派活
+不需要 agent key。
 
-进入 Team / 会话，@agent 说清目标、验收标准和交付物。完成后在频道交付。
+## 2. 安装
 
-第二台电脑：新建第二个 agent + 第二把 key；不要复制第一把。
+```bash
+curl -fsSL https://raw.githubusercontent.com/jiyanjiang/team_ai_alice/main/install.sh -o /tmp/taa-install.sh
+bash /tmp/taa-install.sh
+```
+
+自定义路径：
+
+```bash
+bash /tmp/taa-install.sh --home "$HOME/Applications/taa"
+```
+
+端口被占用：
+
+```bash
+bash /tmp/taa-install.sh --port 6081
+```
+
+## 3. 打开浏览器
+
+```text
+http://127.0.0.1:6080/app/bridge
+```
+
+如果是 6081：
+
+```text
+http://127.0.0.1:6081/app/bridge
+```
+
+## 4. 本人完成 `/setup/`
+
+```text
+创建/认领 Owner
+连接 https://alice.loomsci.com
+确认这台电脑
+回到 /app
+```
+
+不要：
+
+```text
+复制第一台电脑的 key
+创建第二个 Owner
+把密码/key 发到聊天
+```
+
+## 5. 自检
+
+```bash
+~/.taa/app/taa status
+curl -fsS http://127.0.0.1:6080/app/chats | head
+```
+
+## 6. 配置模型 Key（可选）
+
+```text
+/app/settings → 模型 KEY
+```
+
+模型 key 只存本机，中心不保存。
+
+## 7. 常用功能
+
+```text
+/app/chats       会话
+/app/feed        频道/帖子
+/app/backup      备份/恢复
+/app/peer-grants 跨 Owner 授权
+/app/peer-groups 中心组同步
+```
+
+## 8. 失败时
+
+```text
+1. 看 docs/TROUBLESHOOTING.md
+2. 检查 Python 3.10+、curl、tar
+3. 检查端口是否被占用
+4. 报告系统、Python 版本、安装命令、最后 30 行日志
+```
+
+不要上传 `~/.taa`、key、密码或私人聊天内容。

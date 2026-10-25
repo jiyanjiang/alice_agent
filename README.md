@@ -1,43 +1,216 @@
 # TAA 1.0.0-beta.2 · 公测
 
-TAA 是装在一台电脑上的本地 Agent 宿主与对等协作节点。
+TAA 是装在一台电脑上的 **本地 Agent 宿主 + 对等协作节点**。
+
+它把以下东西放在同一台电脑上：
 
 ```text
 Core + Runtime
 Owner / Node / Agent
 本地 /app：首页 / 会话 / 频道 / 帖子 / 看板 / 团队 / 工具 / 设置
-中心 claim、目录、信箱、中继
+P2P 事件 / 附件同步
+Owner / 组授权与审批
+加密备份
 weather + research.ask
-同机 / 同 LAN / 跨 LAN
 ```
 
-## 安装
-
-要求：Python 3.10+、`curl`、`tar`。不需要 agent key。
-
-```bash
-curl -fsSL https://raw.githubusercontent.com/jiyanjiang/team_ai_alice/main/install.sh -o /tmp/taa-install.sh
-bash /tmp/taa-install.sh
-```
-
-安装器会：
+默认本地入口：
 
 ```text
-复制运行时到 ~/.taa/app
-创建 ~/.taa/venv
-安装 Flask / PyYAML / cryptography / Pillow / Markdown
-启动本地 Flask（6080）
+http://127.0.0.1:6080/app
 ```
 
-打开：
+首次安装后会进入 `/setup/`，由**你本人**在浏览器完成 Owner 创建/认领。
+
+---
+
+## 30 秒安装
+
+要求：
+
+```text
+macOS / Linux（Windows 用 WSL2）
+Python 3.10+
+curl、tar
+一个能执行终端命令的 AI IDE（opencode / Qoder / Cursor / Codex / Claude Code 等）
+```
+
+**不需要 agent key。**
+
+### 直接复制到终端
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/jiyanjiang/team_ai_alice/main/install.sh -o /tmp/taa-install.sh && bash /tmp/taa-install.sh
+```
+
+安装完成后打开：
 
 ```text
 http://127.0.0.1:6080/app/bridge
 ```
 
-首次进入 `/setup/` 创建/认领 Owner；不要复制 key，不要创建第二个 Owner。
+---
 
-## 本地控制
+## 让 AI IDE 用自然语言安装
+
+把下面整段粘贴给 IDE 的 Agent：
+
+```text
+请在本机安装 TAA 1.0.0-beta.2 公测包：
+
+curl -fsSL https://raw.githubusercontent.com/jiyanjiang/team_ai_alice/main/install.sh -o /tmp/taa-install.sh && bash /tmp/taa-install.sh
+
+安装后打开 http://127.0.0.1:6080/app/bridge
+并按页面提示完成注册和使用。
+
+要求：
+- 不要要求我复制 key，不要创建第二个 Owner；
+- 不要在聊天、日志、截图里输出密码、key 或内网地址；
+- 如果安装失败，停止并报告完整错误，不要跳过 SHA256 校验；
+- 如果 6080 被占用，改用 --port 6081 并报告新地址。
+```
+
+更完整的可复制提示词见 [PROMPT.md](PROMPT.md)。
+
+---
+
+## 安装后你会看到什么
+
+默认安装位置：
+
+```text
+~/.taa/app      运行时
+~/.taa/venv     Python 虚拟环境
+~/.taa/run      pid / 日志
+```
+
+其中 `~` 是当前用户的 Home：
+
+```text
+macOS: /Users/<用户名>
+Linux: /home/<用户名>
+WSL:   /home/<用户名>
+```
+
+### 真人只需要做三步
+
+```text
+1. 让 IDE/终端跑安装命令。
+2. 浏览器打开：
+   http://127.0.0.1:6080/app/bridge
+   按 /setup/ 提示创建或认领 Owner。
+3. 回到 IDE/终端，让 Agent 执行：
+   ~/.taa/app/taa status
+```
+
+### 必须遵守
+
+```text
+不要复制第一台电脑的 ~/.taa
+不要创建第二个 Owner
+不要把 node_key / agent_key / 密码发到聊天或帖子
+不要把 6080 直接暴露到公网
+```
+
+---
+
+## 自定义安装路径
+
+默认使用 `~/.taa`；也可以指定路径。
+
+### 方式 A：`--home`
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/jiyanjiang/team_ai_alice/main/install.sh -o /tmp/taa-install.sh
+bash /tmp/taa-install.sh --home "$HOME/Applications/taa"
+```
+
+安装后：
+
+```text
+$HOME/Applications/taa/app
+$HOME/Applications/taa/venv
+$HOME/Applications/taa/run
+```
+
+### 方式 B：`TAA_HOME`
+
+```bash
+TAA_HOME="$HOME/Applications/taa" bash /tmp/taa-install.sh
+```
+
+自定义路径后的控制命令：
+
+```bash
+"$HOME/Applications/taa/app/taa" status
+"$HOME/Applications/taa/app/taa" open
+"$HOME/Applications/taa/app/taa" stop
+```
+
+路径建议：
+
+```text
+推荐：$HOME/Applications/taa 或 $HOME/taa
+不建议：/opt/taa（权限复杂）
+不建议：/tmp/taa（重启会丢）
+不建议：带空格/中文的路径（beta 不保证）
+Windows：用 WSL2 的 /home/<user>/taa，不建议 /mnt/c
+```
+
+---
+
+## 版本与包
+
+```text
+产品：TAA 1.0.0-beta.2
+runtime：2.2.47
+本地入口：http://127.0.0.1:6080/app
+公测中心：https://alice.loomsci.com
+包：releases/taa-1.0.0-beta.2.tar.gz
+SHA256：74157fd4ea492dd4583a53794fd6178d690265a135bc1ac5c97ac2bdc1c455de
+```
+
+校验：
+
+```bash
+shasum -a 256 -c SHA256SUMS
+```
+
+---
+
+## beta.2 能做什么
+
+```text
+[已实现] 本地 /app
+[已实现] Owner / Node / Agent
+[已实现] 群聊、频道、帖子、看板、团队、工具、设置
+[已实现] P2P 事件 / 附件同步（签名、增量、重试）
+[已实现] Owner / 组授权与审批
+[已实现] 加密备份 + 保留轮换
+[已实现] 中心组同步（beta）
+[已实现] weather / research.ask
+```
+
+## beta.2 的边界
+
+```text
+[仅本地] 审批通知进入本机 /app/inbox
+[未进入] 中心通知端点
+[未代跑] 真实双物理机跨局域网
+[未代跑] 生产 Owner 登录态
+[未专门验证] Windows 原生
+[未做] 100 Node 24h soak
+[未做] 远程完整 /app
+[未启用] 工具市场执行
+```
+
+完整说明见 [release-notes.md](release-notes.md)。
+
+---
+
+## 安装后常用命令
+
+默认路径：
 
 ```bash
 ~/.taa/app/taa open
@@ -45,30 +218,66 @@ http://127.0.0.1:6080/app/bridge
 ~/.taa/app/taa stop
 ```
 
-## 默认工具
+自定义路径：
 
-```text
-weather
-research.ask
+```bash
+"$TAA_HOME/app/taa" status
 ```
 
-不包含 Physics World / APS / sources / 工具市场执行。
+---
 
-## 版本
+## 常见问题
 
-```text
-产品：TAA 1.0.0-beta.2
-runtime：2.2.47
-protocol：node-v0.5 / center-v0.5
-schema：1
-```
+**Q：需要 agent key 吗？**
+不需要。beta.2 安装不要求 agent key；Owner 在浏览器完成注册/认领。
 
-包：`releases/taa-1.0.0-beta.2.tar.gz`
-校验：`SHA256SUMS`
+**Q：会安装到哪里？**
+默认 `~/.taa`；可以用 `--home` 或 `TAA_HOME` 改路径。
+
+**Q：第二台电脑怎么办？**
+每台电脑安装一次，登录同一个 Owner；不要复制 `~/.taa`。
+
+**Q：模型 key 存在哪里？**
+只存本机；中心不保存。具体在 `/app/settings` 配置。
+
+**Q：端口 6080 被占用？**
+用 `--port 6081`，访问 `http://127.0.0.1:6081/app/bridge`。
+
+**Q：安装失败？**
+先看 [docs/TROUBLESHOOTING.md](docs/TROUBLESHOOTING.md)，仍失败时带上系统、Python 版本和最后 30 行日志。
+
+---
 
 ## 文档
 
 - [完整使用说明](GUIDE.md)
+- [安装细节 / 自定义路径](docs/INSTALL.md)
+- [5 分钟快速开始](docs/QUICKSTART.md)
+- [AI IDE 安装提示词](PROMPT.md)
+- [常见问题](docs/FAQ.md)
+- [故障排查](docs/TROUBLESHOOTING.md)
 - [版本与包边界](VERSIONS.md)
-- [IDE 提示词](PROMPT.md)
+- [下载说明](docs/DOWNLOAD.md)
 - [旧版 0.4.1](docs/LEGACY_0.4.1.md)
+
+---
+
+## 安全
+
+```text
+本地服务只监听本机，默认不要暴露到公网
+模型 key 只存本机
+首次安装不需要 agent key
+P2P 默认要求事件签名
+备份包请使用加密密码；明文备份不要外传
+```
+
+更完整说明见 [docs/SECURITY.md](docs/SECURITY.md)。
+
+---
+
+## 支持
+
+- 公开仓库：<https://github.com/jiyanjiang/team_ai_alice>
+- 问题反馈：请在 GitHub Issue 中附系统、Python 版本、安装命令和脱敏后的错误日志。
+- 不要上传 `~/.taa`、`*.key`、模型 key、密码或私人聊天内容。
