@@ -68,6 +68,7 @@ schema：1
 
 ## 文档
 
+- [完整使用说明](GUIDE.md)
 - [版本与包边界](VERSIONS.md)
 - [IDE 提示词](PROMPT.md)
 - [旧版 0.4.1](docs/LEGACY_0.4.1.md)
