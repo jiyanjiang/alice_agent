@@ -87,6 +87,7 @@ shasum -a 256 -c SHA256SUMS
 
 ## 文档
 
+- [版本与包边界](VERSIONS.md)
 - [公测快速开始](docs/v05/QUICKSTART.md)
 - [安装](docs/v05/INSTALL.md)
 - [IDE 提示词](docs/v05/IDE_PROMPT.md)
