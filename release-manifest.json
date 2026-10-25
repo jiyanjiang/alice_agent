@@ -1,14 +1,22 @@
 {
-  "product": "TAA Complete",
-  "version": "0.4.1",
-  "runtime_version": "2.2.48",
-  "file": "taa-complete-0.4.1.tar.gz",
-  "bytes": 3156624,
-  "sha256": "292ad90d56222d644af02d941af44f5c7dc3f86200a2118ed0f188f5949c522b",
+  "product": "TAA Node",
+  "version": "0.5.0",
+  "file": "taa-node-v05-0.5.0.tar.gz",
+  "bytes": 25339,
+  "sha256": "ae4c7731690f3987889a98a3adb2e1ab7f7909a974f4ee3a3e88092f1c356d0f",
+  "source_commit": "2a5834b",
+  "center": "https://dev.alice.loomsci.com",
+  "install": "bash install.sh --center https://dev.alice.loomsci.com",
+  "requires": {
+    "python": ">=3.10",
+    "tools": [
+      "curl",
+      "tar"
+    ]
+  },
   "default_tools": [
     "weather",
     "research.ask"
   ],
-  "install": "./install.sh --key taa_xxx",
   "public_package": true
 }

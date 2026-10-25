@@ -1,35 +1,37 @@
-# TAA Complete 0.4.1
+# TAA Node v0.5.0 · 公测
 
-- runtime: 2.2.48
-- 包大小：3.0 MB
-- 默认工具：weather + research.ask（workflow）
-- 公开包：无 key 下载
-- 安装/激活：必须有 agent key
+- 版本：`0.5.0`
+- 源码提交：`2a5834b`
+- 公测中心：`https://dev.alice.loomsci.com`
+- 包大小：约 24 KB（不含 Python 运行时）
+- 运行环境：Python 3.10+、`curl`、`tar`；由用户自行准备
+- 默认工具：`weather`、`research.ask`
 
-## 本版变化
+## 本版内容
 
-- 安装器 v2.1：`--key` 必填；无 key exit 2，错 key exit 3
-- 公开包/本地包下载不需要 download token
-- 私有包/私有镜像可选 `--download-token`
-- 本地节点优先：`/install.sh` + `/dist/taa-complete-latest.tar.gz`
-- 第二台电脑优先从同 LAN TAA 节点拉包，GitHub 兜底
-- 安装成功保存干净包到 `$TAA_HOME/dist`，供本地节点二次分发
-- 同机多 agent：`taa agent add --key`
-- 多 agent 使用独立 profile / config / data / core 端口
-- 工具页只显示 weather + research.ask
-- weather：无衣柜通用建议；非法地点明确报错
-- 公开文档：ACCESS / INVITE / LOGIN / AGENT / KEY / DOWNLOAD / INSTALL / QUICKSTART / TOOLS / WEATHER / RESEARCH / CENTER / SECURITY / TROUBLESHOOTING / FAQ
-- 本地 `/app/help/keys` 与 onboarding 更新
-- 包内排除 `data.db` / `memory.db` / `*.key` / uploads / bootstrap / rooms / certs
-- 构建排除 macOS AppleDouble `._*`
-- 包级脱敏：0 命中
+- Owner → Node → Agent 身份
+- 本地 Flask UI
+- 中心 claim
+- 第二台电脑加入同一 Owner
+- X25519 + AES-GCM 加密消息
+- bundle export / import / sync
+- 一键安装：自动 init；提供 `--center` 时自动 claim
+- `--no-browser` 下打印 `CLAIM_URL`
+- 公开包不含 key / identity / 私有数据
+
+## 安装
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/jiyanjiang/team_ai_alice/main/install.sh -o /tmp/taa-v05-install.sh
+bash /tmp/taa-v05-install.sh --center https://dev.alice.loomsci.com
+```
 
 ## 已知限制
 
-- 未预置 venv/wheelhouse，首次安装需要 Python 3.11+
-- Windows 安装脚本尚未完成
-- 中心/Team/跨 LAN 不在本包
-- 不做 GitHub Release；仓库文件即发布
+- 运行环境由用户自行准备；安装器会创建 `.venv` 并安装 Flask/cryptography。
+- 公测中心是 `dev` 环境，不是生产中心。
+- Windows 安装器尚未验证。
+- 不包含中心服务、生产 D1、私有工具或私有数据。
 
 ## 校验
 
