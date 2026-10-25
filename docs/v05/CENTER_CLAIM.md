@@ -41,6 +41,24 @@ center.owner_id  中心 Owner
 
 本地 Owner ID 与中心 Owner ID 不同是预期设计；不要用二者相等来判断成功。
 
+## 本机 TAA 交接
+
+本地 Flask 启动后每 5 秒向中心发心跳。Owner 目录页据此显示：
+
+```text
+最近 30 秒有本机 endpoint 心跳
+  → 显示“打开本机 TAA”
+  → 打开 http://127.0.0.1:6099/app
+  → 加 ?open=1 可自动跳转
+
+没有本机心跳
+  → 显示启动提示词
+  → 在 opencode / IDE 粘贴：
+     ~/.taa-v05/app/taa open
+```
+
+浏览器从 HTTPS 中心直接探测 `127.0.0.1` 会被 PNA 拦截，所以用心跳而不是浏览器直连探测。
+
 ## 不要做
 
 ```text

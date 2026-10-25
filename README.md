@@ -55,11 +55,20 @@ cp -R /tmp/taa-v05/taa-node-v05/. "$HOME/.taa-v05/app/"
 
 ## 启动本地 UI
 
+安装/claim 成功后会自动启动并打开。需要手动控制时：
+
 ```bash
-~/.taa-v05/app/taa open
+~/.taa-v05/app/taa open     # 启动并打开
+~/.taa-v05/app/taa status   # 查看状态
+~/.taa-v05/app/taa stop     # 停止
 ```
 
-打开 <http://127.0.0.1:6099/app>。
+固定入口：<http://127.0.0.1:6099/app>。
+
+中心 Owner 目录页会显示“本机 TAA”：
+
+- 本地 Flask 最近在线：显示直达按钮，可用 `?open=1` 自动跳转
+- 未检测到：显示可粘贴到 opencode / IDE 的启动提示词
 
 ## 默认工具
 

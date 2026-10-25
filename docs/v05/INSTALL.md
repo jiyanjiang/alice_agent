@@ -46,10 +46,11 @@ AUTO_CLAIM=YES
 CLAIM_URL=...
 ```
 
-浏览器完成 claim 后：
+浏览器完成 claim 后安装器会自动启动本地 UI 并打开浏览器。手动检查：
 
 ```bash
 ~/.taa-v05/app/taa status
+~/.taa-v05/app/taa open
 ```
 
 ## 失败时
