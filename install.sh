@@ -9,6 +9,13 @@ CENTER="${TAA_CENTER:-https://dev.alice.loomsci.com}"
 BASE="${TAA_V05_BASE:-https://raw.githubusercontent.com/jiyanjiang/team_ai_alice/main}"
 URL="${TAA_V05_PACKAGE_URL:-${BASE%/}/releases/taa-node-v05-${VERSION}.tar.gz}"
 EXPECTED_SHA256="${TAA_V05_SHA256:-ae4c7731690f3987889a98a3adb2e1ab7f7909a974f4ee3a3e88092f1c356d0f}"
+APP="${TAA_V05_APP:-$HOME/.taa-v05/app}"
+TAA_HOME="${TAA_V05_HOME:-$HOME/.taa-v05}"
+_prev=""
+for _arg in "$@"; do
+  [[ "$_prev" == "--home" ]] && TAA_HOME="$_arg"
+  _prev="$_arg"
+done
 
 usage() {
   cat <<'EOF'
@@ -29,6 +36,7 @@ Environment:
   TAA_V05_VERSION        release version (default: 0.5.0)
   TAA_V05_PACKAGE_URL    override package download URL
   TAA_V05_SHA256         override expected package SHA256
+  TAA_V05_APP            runtime install directory (default: $HOME/.taa-v05/app)
 EOF
 }
 
@@ -55,10 +63,15 @@ if [[ "$ACTUAL_SHA256" != "$EXPECTED_SHA256" ]]; then
   exit 4
 fi
 
-echo "[2/3] extracting"
+echo "[2/3] installing runtime to $APP"
 tar xzf "$TMP/pkg.tgz" -C "$TMP"
-PKG="$TMP/taa-node-v05"
-[[ -x "$PKG/install.sh" ]] || { echo "x package layout is invalid" >&2; exit 4; }
+SRC_PKG="$TMP/taa-node-v05"
+[[ -x "$SRC_PKG/install.sh" ]] || { echo "x package layout is invalid" >&2; exit 4; }
+
+# Keep the runtime after this script exits. Identity lives outside the app dir.
+mkdir -p "$(dirname "$APP")"
+rm -rf "$APP"
+cp -R "$SRC_PKG" "$APP"
 
 # Inject the public beta center unless the caller supplied one.
 HAS_CENTER=0
@@ -70,4 +83,7 @@ if [[ "$HAS_CENTER" == "0" ]]; then
 fi
 
 echo "[3/3] running packaged installer"
-"$PKG/install.sh" "$@"
+"$APP/install.sh" "$@"
+
+echo "TAA_APP=$APP"
+echo "TAA_UI=$APP/.venv/bin/python -m taa_node_v05.web --home \"$TAA_HOME\" --port 6099"

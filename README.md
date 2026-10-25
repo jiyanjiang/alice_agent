@@ -50,7 +50,7 @@ mkdir -p /tmp/taa-v05 && tar xzf /tmp/taa-v05.tgz -C /tmp/taa-v05
 ## 启动本地 UI
 
 ```bash
-~/.taa-v05/.venv/bin/python -m taa_node_v05.web --home "$HOME/.taa-v05" --port 6099
+~/.taa-v05/app/.venv/bin/python -m taa_node_v05.web --home "$HOME/.taa-v05" --port 6099
 ```
 
 打开 <http://127.0.0.1:6099/app>。

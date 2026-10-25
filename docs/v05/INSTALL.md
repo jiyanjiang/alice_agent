@@ -48,7 +48,7 @@ CLAIM_URL=...
 浏览器完成 claim 后：
 
 ```bash
-~/.taa-v05/.venv/bin/python -m taa_node_v05 show --home "$HOME/.taa-v05"
+~/.taa-v05/app/.venv/bin/python -m taa_node_v05 show --home "$HOME/.taa-v05"
 ```
 
 ## 失败时

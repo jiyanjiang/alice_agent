@@ -30,7 +30,7 @@ bash /tmp/taa-v05-install.sh --center https://dev.alice.loomsci.com
 
 5. 检查本地状态：
 
-~/.taa-v05/.venv/bin/python -m taa_node_v05 show --home "$HOME/.taa-v05"
+~/.taa-v05/app/.venv/bin/python -m taa_node_v05 show --home "$HOME/.taa-v05"
 
 确认：
 - node_status = active
@@ -39,7 +39,7 @@ bash /tmp/taa-v05-install.sh --center https://dev.alice.loomsci.com
 
 6. 启动本地 UI：
 
-~/.taa-v05/.venv/bin/python -m taa_node_v05.web --home "$HOME/.taa-v05" --port 6099
+~/.taa-v05/app/.venv/bin/python -m taa_node_v05.web --home "$HOME/.taa-v05" --port 6099
 
 打开 http://127.0.0.1:6099/app ，确认页面显示已连接和 active。
 
