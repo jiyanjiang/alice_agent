@@ -1,4 +1,4 @@
-# ACCESS · 访问与身份（TAA 1.0.0-beta.11）
+# ACCESS · 访问与身份（TAA 1.0.0-beta.12）
 
 TAA 公测包安装**不需要 agent key**。
 
@@ -40,4 +40,4 @@ node_key / agent_key：本机身份，不对外发送
 
 ## 旧版
 
-`TAA Complete 0.4.1` 的 agent-key 安装模型已不属于 beta.11；旧文档只作历史参考。
+`TAA Complete 0.4.1` 的 agent-key 安装模型已不属于 beta.12；旧文档只作历史参考。
