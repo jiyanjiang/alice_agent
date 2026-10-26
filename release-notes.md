@@ -1,32 +1,33 @@
-# TAA 1.0.0-beta.15 · 公测
+# TAA 1.0.0-beta.16 · 公测
 
-- 产品版本：`1.0.0-beta.15`
+- 产品版本：`1.0.0-beta.16`
 - runtime：`2.2.47`
 - 更新指针：`releases/latest.json`
-- 包：`releases/taa-1.0.0-beta.15.tar.gz`
-- 大小：3,230,410 bytes
-- SHA256：`cf5d345c002de69124e576f3590c7876e4bf197409af9ac715a01f979600a9df`
+- 包：`releases/taa-1.0.0-beta.16.tar.gz`
+- 大小：3,232,897 bytes
+- SHA256：`008a9c48d657aa924e2f2881886e08bb0cd286971a133918d39a972af9a2e675`
 
 ## 本版内容
 
-- 版本页显示本机 agent runtime：不再因 `ide` 为空或没有任务而过滤掉本地 agent。
-- 版本页顶部明确区分“运行时版本”和产品版本。
-- 自检无审计报告时显示“未运行审计”，不再误写成“未运行”。
-- 更新状态机：`unchecked / current / available / downloaded / applying / failed`。
-- 更新按钮联动：没有新版本时禁用下载和安装；已下载后禁用下载、启用安装；安装中全部禁用。
-- 更新失败显示错误；可重新检查/下载。
-- 保留 beta.14 的四栏工具/帮助页统一、缩略图修复、原子升级/回滚。
+- 新增 `/app/settings/profile`：Owner 公开主页编辑页，接入统一四栏页面规格。
+- `/app/settings` 账号卡片增加“公开主页”入口。
+- `/setup/profile` 对已连接节点 302 到 `/app/settings/profile`，兼容旧链接。
+- `/setup/account`、`/setup/friends` 的“编辑公开主页”链接改到新页面。
+- 新页面支持：公开 ID、公开 URL、本地二维码、显示名、简介、常居地、常居地显隐。
+- 简介 500 字符前端计数 + 服务端校验；Markdown / LaTeX 提示。
+- 二维码本地生成，不调用第三方二维码服务。
+- 保留 beta.15 runtime 上报/更新状态机、beta.14 工具页统一、缩略图/升级/回滚修复。
 
 ## 验证
 
 ```text
-版本页：agent runtime = 1，显示 alice / 本地运行时 / 2.2.47
-更新状态 current：检查可点，下载/安装 disabled
-模拟 available：下载可点，安装 disabled
-模拟 downloaded：下载 disabled，安装可点
-模拟 applying：三个按钮全部 disabled
-模拟 failed：显示错误，检查/下载可点
-恢复真实状态：current
+/app/settings → 公开主页 点击可达
+/app/settings/profile 200，side/detail/toggle 存在
+公开 ID / 公开 URL / 二维码正常
+1600 / 390 无横向滚动
+保存同一资料成功并提示“公开主页已更新”
+501 字符简介 POST 返回 400，未写入中心
+/setup/profile → 302 /app/settings/profile
 ```
 
 ## 已知限制
@@ -34,6 +35,4 @@
 ```text
 Windows 原生升级未验证（本轮不做）
 真实两物理机 2 真人 + 2 agent 待明天验收
-工作组消息仍是中心中继 + 页面刷新
-10:07/20:07 自动定时的真实等待未验收
 ```
