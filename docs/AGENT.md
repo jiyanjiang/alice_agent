@@ -1,4 +1,4 @@
-# AGENT · Agent 与电脑（TAA 1.0.0-beta.10）
+# AGENT · Agent 与电脑（TAA 1.0.0-beta.11）
 
 ## 一台电脑
 
@@ -11,7 +11,7 @@ Agent 在本机运行，使用本机目录/模型 key
 ## 第二台电脑
 
 ```text
-第二台电脑单独安装 beta.10
+第二台电脑单独安装 beta.11
 打开 /setup/
 登录同一个 Owner
 不要复制第一台电脑的 ~/.taa
@@ -35,4 +35,4 @@ Agent 默认只在本机执行
 
 ## 旧版
 
-0.4.1 的 `taa agent add --key ...` 属于旧身份模型；beta.10 安装不需要 agent key。
+0.4.1 的 `taa agent add --key ...` 属于旧身份模型；beta.11 安装不需要 agent key。
