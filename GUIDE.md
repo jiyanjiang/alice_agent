@@ -1,12 +1,12 @@
-# TAA 1.0.0-beta.12 使用说明
+# TAA 1.0.0-beta.13 使用说明
 
-- 产品：TAA 1.0.0-beta.12
+- 产品：TAA 1.0.0-beta.13
 - runtime：2.2.47
 - 本地入口：`http://127.0.0.1:6080/app`
 - 首次向导：`http://127.0.0.1:6080/setup/`
 - 公测中心：<https://alice.loomsci.com>
-- 公开包：`releases/taa-1.0.0-beta.12.tar.gz`
-- SHA256：`3042925352b1df11fd07a0da4b77816720b0ff682b11929373c7b9f0135a03a2`
+- 公开包：`releases/taa-1.0.0-beta.13.tar.gz`
+- SHA256：`9f45bfc5d164aa6f4df87915112e295dc1432f33bdbbfb88b2802167da1ccfd7`
 
 ---
 
@@ -52,7 +52,7 @@ curl -fsSL https://raw.githubusercontent.com/jiyanjiang/team_ai_alice/main/insta
 ### 1.2 交给 AI IDE
 
 ```text
-请在本机安装 TAA 1.0.0-beta.12 公测包：
+请在本机安装 TAA 1.0.0-beta.13 公测包：
 
 curl -fsSL https://raw.githubusercontent.com/jiyanjiang/team_ai_alice/main/install.sh -o /tmp/taa-install.sh && bash /tmp/taa-install.sh
 
@@ -202,7 +202,7 @@ DeepSeek
 帖子、回复、房间消息、附件
 增量游标
 缺失附件不推进游标
-Ed25519 事件签名，beta.12 默认强制
+Ed25519 事件签名，beta.13 默认强制
 ```
 
 ### 4.4 TAA 账号 / 组授权
@@ -214,7 +214,7 @@ Ed25519 事件签名，beta.12 默认强制
 blob 权限
 ```
 
-beta.12 的审批通知只写本机 `/app/inbox`；中心通知端点在后续版本。
+beta.13 的审批通知只写本机 `/app/inbox`；中心通知端点在后续版本。
 
 ### 4.5 备份
 
@@ -290,7 +290,7 @@ rm -rf ~/.taa
 ## 7. 已知限制
 
 ```text
-中心通知端点未进入 beta.12；审批通知只在本机 /app/inbox
+中心通知端点未进入 beta.13；审批通知只在本机 /app/inbox
 真实双物理机跨局域网未由发布方代跑
 生产 TAA 账号登录态未由发布方代跑
 Windows 原生未专门验证
