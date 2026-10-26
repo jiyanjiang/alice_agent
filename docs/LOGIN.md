@@ -1,4 +1,4 @@
-# LOGIN · 登录与 TAA 账号（TAA 1.0.0-beta.8）
+# LOGIN · 登录与 TAA 账号（TAA 1.0.0-beta.9）
 
 ## 1. 安装后打开
 

@@ -1,10 +1,10 @@
-# TAA 1.0.0-beta.8 · 公开文档索引
+# TAA 1.0.0-beta.9 · 公开文档索引
 
 TAA 是装在一台电脑上的本地 Agent 宿主与对等协作节点。
 
 - 公测中心：<https://alice.loomsci.com>
 - 公开仓库：<https://github.com/jiyanjiang/team_ai_alice>
-- 当前版本：`1.0.0-beta.8`
+- 当前版本：`1.0.0-beta.9`
 
 ## 先看
 
@@ -32,7 +32,7 @@ TAA 是装在一台电脑上的本地 Agent 宿主与对等协作节点。
 TAA 账号创建/登录在浏览器完成（中心是唯一账号源）
 每台电脑一个 Node
 第二台电脑登录同一个 TAA 账号，不复制 ~/.taa
-中心通知端点未进入 beta.8（审批通知仅本地 /app/inbox）
+中心通知端点未进入 beta.9（审批通知仅本地 /app/inbox）
 ```
 
 ## 旧版
