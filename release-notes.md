@@ -1,38 +1,27 @@
-# TAA 1.0.0-beta.17 · 公测
+# TAA 1.0.0-beta.18 · 公测
 
-- 产品版本：`1.0.0-beta.17`
+- 产品版本：`1.0.0-beta.18`
 - runtime：`2.2.47`
 - 更新指针：`releases/latest.json`
-- 包：`releases/taa-1.0.0-beta.17.tar.gz`
-- 大小：3,234,883 bytes
-- SHA256：`ac07645a9fa650f4abc1c719d672a6311710b713e0e37cdfef15d2c7c65ed2d8`
+- 包：`releases/taa-1.0.0-beta.18.tar.gz`
+- 大小：3,235,101 bytes
+- SHA256：`d1f64105834aeb1a20a9fbc46ea19064cd2532fa8ab0f5997062557e78dac816`
 
 ## 本版内容
 
-- 公开主页常居地增加“使用网络位置”（Cloudflare `/geo/suggest`）。
-- 点击后自动保存城市级地点，立即回到公开主页。
-- 公开显示地点和天气查询城市拆分：
-  - `home_location` 可自由填写、可写错、可包含区县
-  - `weather_city` 只存城市级，天气只用它
-- `成都·武侯` / `成都市武侯区` / `四川省成都市武侯区` → 天气使用 `成都`
-- 手动保存成功后，若可解析出城市，同步更新本机天气城市。
-- 天气地点顺序：显式地点 → persona.residence → owner weather_city → CF。
-- 继续保留 beta.16 的公开主页四栏编辑页、settings 入口、setup 兼容重定向。
+- 修复“使用网络位置”点击后看起来无反应：增加提交中的按钮状态与 `role=status` 提示。
+- 实际链路已复测：`POST /app/settings/profile/locate` → 302 → 页面提示“已使用网络位置：Chengdu”。
+- 保留 beta.17 的公开显示/天气城市拆分、城市规范化和 Owner 公开主页。
 
 ## 验证
 
 ```text
-/app/settings/profile 200
-常居地 [成都] [使用网络位置]
-天气查询城市：成都
-QR 本地生成
-成都·武侯 → 成都
-成都市武侯区 → 成都
-四川省成都市武侯区 → 成都
-Chengdu, Sichuan → Chengdu
-武侯区 → 空（不作为天气城市）
-无法解析的显示文本不阻断保存
-1600 / 390 无横向滚动
+按钮点击 -> 正在获取网络位置…
+状态行 -> 正在读取 Cloudflare 城市，请稍候…
+POST /locate -> 302
+页面 -> 已使用网络位置：Chengdu
+天气查询城市 -> Chengdu 网络位置
+测试后已恢复常居地 = 成都
 ```
 
 ## 已知限制
