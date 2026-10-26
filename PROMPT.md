@@ -1,11 +1,11 @@
-# TAA 1.0.0-beta.6 · AI IDE 安装提示词
+# TAA 1.0.0-beta.7 · AI IDE 安装提示词
 
 复制下面整段给 IDE 的 Agent（opencode / Qoder / Cursor / Codex / Claude Code 等）。
 
 ## 主提示词（默认路径）
 
 ```text
-请在本机安装 TAA 1.0.0-beta.6 公测包。
+请在本机安装 TAA 1.0.0-beta.7 公测包。
 
 先检测系统：macOS / Linux / Windows。
 - macOS / Linux：使用系统 shell。
@@ -40,7 +40,7 @@
 ## 自定义路径
 
 ```text
-请把 TAA 1.0.0-beta.6 安装到 $HOME/Applications/taa：
+请把 TAA 1.0.0-beta.7 安装到 $HOME/Applications/taa：
 
 curl -fsSL https://raw.githubusercontent.com/jiyanjiang/team_ai_alice/main/install.sh -o /tmp/taa-install.sh
 bash /tmp/taa-install.sh --home "$HOME/Applications/taa"
@@ -59,7 +59,7 @@ bash /tmp/taa-install.sh --home "$HOME/Applications/taa"
 ## 最短提示词
 
 ```text
-请在本机安装 TAA 1.0.0-beta.6 公测包：
+请在本机安装 TAA 1.0.0-beta.7 公测包：
 
 curl -fsSL https://raw.githubusercontent.com/jiyanjiang/team_ai_alice/main/install.sh -o /tmp/taa-install.sh && bash /tmp/taa-install.sh
 

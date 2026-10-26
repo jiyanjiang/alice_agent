@@ -1,137 +1,92 @@
-# TAA 1.0.0-beta.6 · 公测
+# TAA 1.0.0-beta.7 · 公测
 
-- 产品版本：`1.0.0-beta.6`
+- 产品版本：`1.0.0-beta.7`
 - runtime：`2.2.47`
-- 公测中心：`https://alice.loomsci.com`
-- 包：`releases/taa-1.0.0-beta.6.tar.gz`
-- 大小：3,222,905 bytes
-- SHA256：`187abad06cd9488f0545960c49356a5d9e4d3d0419b76f7813e93ee132566e27`
+- 更新指针：`releases/latest.json`
+- 包：`releases/taa-1.0.0-beta.7.tar.gz`
+- 大小：3,227,489 bytes
+- SHA256：`a623cc078154e236fe1e917aaed920e9c2a3fb4e06a8692cb1ee1486cc873f65`
 
-## 本版重点：升级不再覆盖数据
+## 本版重点：自动检查更新
 
-beta.6 新增正式升级路径：
-
-```text
-已有安装 → 检测 identity.json
-→ 停止服务
-→ 备份 identity / agents / data.db / events.db / config / uploads
-→ staging app.new
-→ 迁移 events.db 到 ~/.taa/events.db
-→ 原子切换 app
-→ 健康检查
-→ 失败自动回滚
-```
-
-新安装仍从 0 开始；已有安装走升级。
-
-### 保护清单
+三档模式：
 
 ```text
-identity.json
-agents/
-bootstrap/
-data.db (+ WAL)
-events.db
-config.toml
-static/uploads/
-backups/
-app/data/
+notify   只提示
+download 自动下载 + 提示（默认）
+auto     自动下载 + 空闲时自动安装 + 失败回滚
 ```
 
-### 原子升级
+默认：
 
 ```text
-完整包
-→ app.new
-→ app.prev
-→ 原子替换
+检查：10:07 / 20:07
+模式：download
+自动安装：关闭
 ```
 
-不是直接覆盖 live app。
+每天最多检查两次、自动安装一次；失败后 6 小时不重试。
 
-### 自动回滚
+### 更新入口
 
 ```text
-迁移失败 / 切换失败 / 健康检查失败
-→ 停止新版本
-→ 恢复 app.prev
-→ 恢复 data.db / events.db 备份
-→ 启动旧版本
-→ 验证旧版本健康
+/app/version  更新卡片：检查 / 下载 / 安装并重启
+/app/inbox    系统通知
+/app/settings 更新模式
 ```
 
-已实测：
+### 更新源
 
 ```text
-beta.5 → beta.6 成功
-身份/Agent key/配置/附件保持不变
-data 表 sentinel 保留
-events.db 4 条事件保留
-app/data 旧日志保留
-强制健康失败 → 自动回滚到 beta.5
+https://raw.githubusercontent.com/jiyanjiang/team_ai_alice/main/releases/latest.json
 ```
 
-### events.db
-
-`events.db` 是事件溯源日志，不是缓存：
+必须：
 
 ```text
-events / lamport / node_id / type / payload
-meta / 同步游标
+HTTPS
+固定仓库
+SHA256 校验
+只升不降
+min_upgrade_from 检查
 ```
 
-beta.6 起默认位置：
+### 自动安装保护
+
+`auto` 只在：
 
 ```text
-~/.taa/events.db
+无运行中任务
+无运行中房间
+agent 空闲
+当天未自动安装
 ```
 
-旧位置的 `app/events.db` 会在升级时迁移并保留备份。
+否则只下载，不重启。
 
-## 保留能力
+## 保留 beta.6 能力
 
-```text
-公开主页 /u/<public_id>
-简介 / Markdown / LaTeX
-常居地 / 隐藏 / 二维码
-好友申请 / 批准
-2 真人 + 2 agent 工作组目录
-中心中继工作组消息
-TAA 账号 / Node / Agent
-P2P / 组授权 / 加密备份
-```
-
-## 安装
-
-```bash
-curl -fsSL https://raw.githubusercontent.com/jiyanjiang/team_ai_alice/main/install.sh -o /tmp/taa-install.sh
-bash /tmp/taa-install.sh
-```
-
-已有 beta.5 安装直接运行同一命令，会进入升级流程。
+- 数据保护清单
+- 原子升级
+- 自动回滚
+- `events.db` 迁移
+- 公开主页 / 好友 / 2+2 工作组
+- 中心中继工作组消息
 
 ## 已知限制
 
 ```text
-升级器在 macOS 实测；Windows 原生未验证
-未做断电级故障注入（已做健康检查失败回滚）
-工作组消息是中心中继 + 页面刷新
-真实两物理机 2 真人 + 2 agent 聊天待验收
+更新器 macOS 实测；Windows 原生未验证
+自动安装尚未在两台真实物理机 2+2 工作组中验证
+工作组消息仍是中心中继 + 页面刷新
 ```
 
 ## 回滚
 
 ```text
+taa-1.0.0-beta.6.tar.gz
 taa-1.0.0-beta.5.tar.gz
 taa-1.0.0-beta.4.tar.gz
-taa-1.0.0-beta.2.tar.gz
-taa-1.0.0-beta.1.tar.gz
-```
-
-```bash
-TAA_VERSION=1.0.0-beta.5 \
-TAA_PACKAGE_SHA256=ac499deb823dd1e0da62f209a1fec6222b0103adc66093125fe92c92ea8353cb \
-bash install.sh
 ```
 
 ## 校验

@@ -3,13 +3,14 @@
 ## 当前产品主包
 
 ```text
-taa-1.0.0-beta.6.tar.gz
-完整 TAA 产品包（公开主页 / 好友 / 2+2 工作组 / 原子升级）
+taa-1.0.0-beta.7.tar.gz
+完整 TAA 产品包（自动检查更新 / 原子升级 / 回滚）（公开主页 / 好友 / 2+2 工作组 / 原子升级）
 ```
 
 ## 历史完整包 / 回滚
 
 ```text
+taa-1.0.0-beta.6.tar.gz
 taa-1.0.0-beta.5.tar.gz
 taa-1.0.0-beta.4.tar.gz
 taa-1.0.0-beta.2.tar.gz
