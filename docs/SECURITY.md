@@ -1,4 +1,4 @@
-# SECURITY · 安全边界（TAA 1.0.0-beta.16）
+# SECURITY · 安全边界（TAA 1.0.0-beta.17）
 
 ## 本机
 
@@ -12,7 +12,7 @@ TAA 默认只服务本机 http://127.0.0.1:6080
 ## 密钥
 
 ```text
-安装 beta.16 不需要 agent key
+安装 beta.17 不需要 agent key
 模型 key 只存本机 ~/.taa/config.toml（0600）
 node_key / agent_key 只在本机
 不要发到聊天、帖子、截图、Issue
@@ -21,7 +21,7 @@ node_key / agent_key 只在本机
 ## P2P
 
 ```text
-beta.16 默认要求远端事件签名（TAA_PEER_REQUIRE_SIGN=1）
+beta.17 默认要求远端事件签名（TAA_PEER_REQUIRE_SIGN=1）
 附件按 sha256 校验
 缺失附件不推进同步游标
 授权按组/房间 allowlist
@@ -58,7 +58,7 @@ Owner 密码
 ```text
 中心不保存模型 key
 中心不代替节点执行任务
-中心通知端点未进入 beta.16
+中心通知端点未进入 beta.17
 ```
 
 详见 [CENTER](CENTER.md)。
