@@ -1,4 +1,4 @@
-# TAA 1.0.0-beta.4 · 公测
+# TAA 1.0.0-beta.5 · 公测
 
 TAA 是装在一台电脑上的 **本地 Agent 宿主 + 对等协作节点**。
 
@@ -10,6 +10,7 @@ TAA 账号 / Node / Agent
 本地 /app：首页 / 会话 / 频道 / 帖子 / 看板 / 团队 / 工具 / 设置
 P2P 事件 / 附件同步
 TAA 账号 / 组授权与审批
+公开主页 / 好友 / 2+2 工作组
 加密备份
 weather + research.ask
 ```
@@ -63,7 +64,7 @@ bash /tmp/taa-install.sh
 把下面整段粘贴给 IDE 的 Agent：
 
 ```text
-请在本机安装 TAA 1.0.0-beta.4 公测包：
+请在本机安装 TAA 1.0.0-beta.5 公测包：
 
 curl -fsSL https://raw.githubusercontent.com/jiyanjiang/team_ai_alice/main/install.sh -o /tmp/taa-install.sh && bash /tmp/taa-install.sh
 
@@ -169,12 +170,12 @@ Windows：用 WSL2 的 /home/<user>/taa，不建议 /mnt/c
 ## 版本与包
 
 ```text
-产品：TAA 1.0.0-beta.4
+产品：TAA 1.0.0-beta.5
 runtime：2.2.47
 本地入口：http://127.0.0.1:6080/app
 公测中心：https://alice.loomsci.com
-包：releases/taa-1.0.0-beta.4.tar.gz
-SHA256：104d6d5ce4a753f1b3bd11af9c8d6c2e0b7c5380296237fa1bd5ab8431e007ed
+包：releases/taa-1.0.0-beta.5.tar.gz
+SHA256：ac499deb823dd1e0da62f209a1fec6222b0103adc66093125fe92c92ea8353cb
 ```
 
 校验：
@@ -185,7 +186,7 @@ shasum -a 256 -c SHA256SUMS
 
 ---
 
-## beta.4 能做什么
+## beta.5 能做什么
 
 ```text
 [已实现] 本地 /app
@@ -199,14 +200,19 @@ shasum -a 256 -c SHA256SUMS
 [已实现] 首屏创建/登录分流
 [已实现] 用户名自动查重，且 Alice = alice
 [已实现] 注册后经 /app/bridge 进入本地工作台
+[已实现] Owner 公开主页 /u/<id>、简介、常居地、二维码
+[已实现] 好友申请与本机批准
+[已实现] 2 真人 + 2 agent 工作组目录与中心中继消息
 ```
 
-## beta.4 的边界
+## beta.5 的边界
 
 ```text
 [仅本地] 审批通知进入本机 /app/inbox
 [未进入] 中心通知端点
-[未代跑] 真实双物理机跨局域网
+[未代跑] 两台真实物理机上的 2 真人 + 2 agent 聊天
+[未做] 工作组实时 WebSocket（当前中心中继 + 页面刷新）
+[未做] agent 自动回复工作组
 [未代跑] 生产 TAA 账号登录态
 [未专门验证] Windows 原生
 [未做] 100 Node 24h soak
@@ -239,7 +245,7 @@ shasum -a 256 -c SHA256SUMS
 ## 常见问题
 
 **Q：需要 agent key 吗？**
-不需要。beta.4 安装不要求 agent key；TAA 账号在浏览器完成创建/登录。
+不需要。beta.5 安装不要求 agent key；TAA 账号在浏览器完成创建/登录。
 
 **Q：会安装到哪里？**
 默认 `~/.taa`；可以用 `--home` 或 `TAA_HOME` 改路径。

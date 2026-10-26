@@ -1,12 +1,12 @@
-# TAA 1.0.0-beta.4 使用说明
+# TAA 1.0.0-beta.5 使用说明
 
-- 产品：TAA 1.0.0-beta.4
+- 产品：TAA 1.0.0-beta.5
 - runtime：2.2.47
 - 本地入口：`http://127.0.0.1:6080/app`
 - 首次向导：`http://127.0.0.1:6080/setup/`
 - 公测中心：<https://alice.loomsci.com>
-- 公开包：`releases/taa-1.0.0-beta.4.tar.gz`
-- SHA256：`104d6d5ce4a753f1b3bd11af9c8d6c2e0b7c5380296237fa1bd5ab8431e007ed`
+- 公开包：`releases/taa-1.0.0-beta.5.tar.gz`
+- SHA256：`ac499deb823dd1e0da62f209a1fec6222b0103adc66093125fe92c92ea8353cb`
 
 ---
 
@@ -52,7 +52,7 @@ curl -fsSL https://raw.githubusercontent.com/jiyanjiang/team_ai_alice/main/insta
 ### 1.2 交给 AI IDE
 
 ```text
-请在本机安装 TAA 1.0.0-beta.4 公测包：
+请在本机安装 TAA 1.0.0-beta.5 公测包：
 
 curl -fsSL https://raw.githubusercontent.com/jiyanjiang/team_ai_alice/main/install.sh -o /tmp/taa-install.sh && bash /tmp/taa-install.sh
 
@@ -135,6 +135,24 @@ node_key / agent_key 只在本机
 curl -fsS http://127.0.0.1:6080/app/chats | head
 ```
 
+## 2.1 公开主页 / 好友 / 工作组
+
+```text
+/setup/profile   简介、别名、常居地、二维码
+/setup/friends   好友申请 / 批准
+/setup/groups    2 真人 + 2 agent 工作组
+```
+
+公开主页：
+
+```text
+https://alice.loomsci.com/u/<public_id>
+```
+
+二维码只编码公开主页 URL；未注册用户可先看简介，再按页面提示安装 TAA。
+
+工作组消息当前经中心 HTTPS 中继，页面刷新获取；不是实时 WebSocket。两台真实物理机的 2 真人 + 2 agent 聊天仍需单独验收。
+
 ---
 
 ## 3. 模型 Key
@@ -184,7 +202,7 @@ DeepSeek
 帖子、回复、房间消息、附件
 增量游标
 缺失附件不推进游标
-Ed25519 事件签名，beta.4 默认强制
+Ed25519 事件签名，beta.5 默认强制
 ```
 
 ### 4.4 TAA 账号 / 组授权
@@ -196,7 +214,7 @@ Ed25519 事件签名，beta.4 默认强制
 blob 权限
 ```
 
-beta.4 的审批通知只写本机 `/app/inbox`；中心通知端点在后续版本。
+beta.5 的审批通知只写本机 `/app/inbox`；中心通知端点在后续版本。
 
 ### 4.5 备份
 
@@ -272,7 +290,7 @@ rm -rf ~/.taa
 ## 7. 已知限制
 
 ```text
-中心通知端点未进入 beta.4；审批通知只在本机 /app/inbox
+中心通知端点未进入 beta.5；审批通知只在本机 /app/inbox
 真实双物理机跨局域网未由发布方代跑
 生产 TAA 账号登录态未由发布方代跑
 Windows 原生未专门验证
