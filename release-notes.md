@@ -1,49 +1,40 @@
-# TAA 1.0.0-beta.13 · 公测
+# TAA 1.0.0-beta.14 · 公测
 
-- 产品版本：`1.0.0-beta.13`
+- 产品版本：`1.0.0-beta.14`
 - runtime：`2.2.47`
 - 更新指针：`releases/latest.json`
-- 包：`releases/taa-1.0.0-beta.13.tar.gz`
-- 大小：3,228,121 bytes
-- SHA256：`9f45bfc5d164aa6f4df87915112e295dc1432f33bdbbfb88b2802167da1ccfd7`
+- 包：`releases/taa-1.0.0-beta.14.tar.gz`
+- 大小：3,229,789 bytes
+- SHA256：`aee3af9d912eab066928193eb24639d95cc0ccaf0e3a699e7abda14be5289c9e`
 
 ## 本版内容
 
-- 自动检查更新：`notify / download / auto`
-- 默认 `download`，检查时间 `10:07 / 20:07`
-- 更新检查通过 GitHub Contents API 读取 `releases/latest.json`
-- 更新 API：`/v1/update/status|check|download|apply|settings`
-- `/app/version`、`/app/inbox`、`/app/settings`
-- 修复版本页 TAA UPDATE 卡片缺少内边距、内容贴边/溢出
-- 修复设置页更新模式下拉框挤压“保存”按钮
-- 修复安装版 `static/uploads` 软链导致 `/thumb` 缩略图 404
-- updater 日志：`~/.taa/updates/updater.log`
-- 修复从任意目录启动时 agent 工作目录错误
-- 保留原子升级 / 自动回滚 / 数据保护清单
+- 统一设置页进入的本地工具/帮助页：HTTPS/CA、P2P 同步、跨 Owner 授权、本机备份、中心组同步、Key 帮助。
+- 所有页面统一为：左侧 rail + 侧栏 + 主区 + 详情栏，顶部“详情”可收起/展开。
+- 修复 `/app/peer-grants` 因只读连接执行建表导致的 500。
+- 修复备份页按钮被 flex 挤压成竖排/圆形的问题。
+- 修复中心组同步表头挤在一起、无表格边框的问题。
+- 修复帮助页长命令被卡片右侧裁切的问题。
+- 版本页“TAA 当前版本”改为“TAA 运行时版本”，避免和产品版本混淆。
+- 保留自动更新、缩略图软链修复、启动器 cwd 修复、原子升级/回滚。
 
 ## 验证
 
 ```text
-1600 / 1720 / 1800 / 2000 宽度：更新卡片都在主区内，无横向溢出
-900 / 390 宽度：更新卡片右边界 <= 视口，无横向滚动
-版本页、设置页、收件箱、频道、看板、团队、会话、首页截图
-详情面板打开/关闭、检查更新、下载、设置页模式切换
-/thumb 480px 缩略图 200 image/jpeg
+/app/help/https /app/help/keys /app/peer-sync /app/peer-grants
+/app/backup /app/peer-groups 全部 200
+每页 side/detail/toggle 存在
+每页 1600/390 无横向滚动
+设置页点击五个入口均到达目标页
+备份下载产生 taa-backup.zip
+中心组同步未配置时按钮 disabled
 ```
 
 ## 已知限制
 
 ```text
-Windows 原生未验证
-真实两物理机 2 真人 + 2 agent 待验收
+Windows 原生升级未验证（当前不纳入本版验收）
+真实两物理机 2 真人 + 2 agent 待用户明天验收
 工作组消息仍是中心中继 + 页面刷新
 自动定时 10:07/20:07 的真实等待未验收
-```
-
-## 回滚
-
-```text
-taa-1.0.0-beta.12.tar.gz
-taa-1.0.0-beta.11.tar.gz
-taa-1.0.0-beta.10.tar.gz
 ```

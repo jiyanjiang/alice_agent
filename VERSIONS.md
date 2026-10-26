@@ -4,28 +4,29 @@
 
 | 制品 | 版本 | 包含 |
 |---|---|---|
-| `taa-1.0.0-beta.13.tar.gz` | 1.0.0-beta.13 / runtime 2.2.47 | 自动更新、更新 API、更新页/设置页/收件箱、UI 溢出修复、缩略图软链修复、原子升级、自动回滚、任意目录启动修复、公开主页/好友/2+2 工作组 |
-| 公库 main | 1.0.0-beta.13 | installer、包、latest.json、IDE prompt、文档 |
+| `taa-1.0.0-beta.14.tar.gz` | 1.0.0-beta.14 / runtime 2.2.47 | 自动更新、更新 API、UI 统一、工具/帮助页四栏、缩略图修复、原子升级/回滚、公开主页/好友/2+2 工作组 |
+| 公库 main | 1.0.0-beta.14 | installer、包、latest.json、IDE prompt、文档 |
 
 ## 历史包
 
 | 制品 | 版本 | 说明 |
 |---|---|---|
+| `taa-1.0.0-beta.13.tar.gz` | 1.0.0-beta.13 | 缩略图与 UI 补丁 |
 | `taa-1.0.0-beta.12.tar.gz` | 1.0.0-beta.12 | UI 溢出修复 |
 | `taa-1.0.0-beta.11.tar.gz` | 1.0.0-beta.11 | 启动器 cwd 修复 |
 | `taa-1.0.0-beta.10.tar.gz` | 1.0.0-beta.10 | 更新 API |
 | `taa-1.0.0-beta.9.tar.gz` | 1.0.0-beta.9 | API 更新检查 |
 | `taa-1.0.0-beta.8.tar.gz` | 1.0.0-beta.8 | 自动更新兼容修复包 |
 | `taa-1.0.0-beta.7.tar.gz` | 1.0.0-beta.7 | 自动检查更新首版 |
-| `taa-1.0.0-beta.6.tar.gz` | 1.0.0-beta.6 | 数据保护 / 原子升级 / 自动回滚 |
 
 ## 边界
 
 ```text
-TAA 1.0.0-beta.13 = 完整 Node 公测包
+TAA 1.0.0-beta.14 = 完整 Node 公测包
 检查：10:07 / 20:07
 默认：download
 auto：可选，空闲时自动安装
 更新源：GitHub releases/latest.json（Contents API）
 失败：自动回滚，保留 app.prev / backup
+Windows：暂不纳入本版验收
 ```
