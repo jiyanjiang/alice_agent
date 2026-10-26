@@ -1,4 +1,4 @@
-> **历史文档（v0.5 早期）**：beta.9 已取消本地 Owner，账号只由中心管理；当前流程以 `../LOGIN.md` 为准。
+> **历史文档（v0.5 早期）**：beta.10 已取消本地 Owner，账号只由中心管理；当前流程以 `../LOGIN.md` 为准。
 
 # TAA Node v0.5 · 中心 claim 与 Owner
 
