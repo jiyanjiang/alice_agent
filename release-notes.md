@@ -1,40 +1,39 @@
-# TAA 1.0.0-beta.14 · 公测
+# TAA 1.0.0-beta.15 · 公测
 
-- 产品版本：`1.0.0-beta.14`
+- 产品版本：`1.0.0-beta.15`
 - runtime：`2.2.47`
 - 更新指针：`releases/latest.json`
-- 包：`releases/taa-1.0.0-beta.14.tar.gz`
-- 大小：3,229,789 bytes
-- SHA256：`aee3af9d912eab066928193eb24639d95cc0ccaf0e3a699e7abda14be5289c9e`
+- 包：`releases/taa-1.0.0-beta.15.tar.gz`
+- 大小：3,230,410 bytes
+- SHA256：`cf5d345c002de69124e576f3590c7876e4bf197409af9ac715a01f979600a9df`
 
 ## 本版内容
 
-- 统一设置页进入的本地工具/帮助页：HTTPS/CA、P2P 同步、跨 Owner 授权、本机备份、中心组同步、Key 帮助。
-- 所有页面统一为：左侧 rail + 侧栏 + 主区 + 详情栏，顶部“详情”可收起/展开。
-- 修复 `/app/peer-grants` 因只读连接执行建表导致的 500。
-- 修复备份页按钮被 flex 挤压成竖排/圆形的问题。
-- 修复中心组同步表头挤在一起、无表格边框的问题。
-- 修复帮助页长命令被卡片右侧裁切的问题。
-- 版本页“TAA 当前版本”改为“TAA 运行时版本”，避免和产品版本混淆。
-- 保留自动更新、缩略图软链修复、启动器 cwd 修复、原子升级/回滚。
+- 版本页显示本机 agent runtime：不再因 `ide` 为空或没有任务而过滤掉本地 agent。
+- 版本页顶部明确区分“运行时版本”和产品版本。
+- 自检无审计报告时显示“未运行审计”，不再误写成“未运行”。
+- 更新状态机：`unchecked / current / available / downloaded / applying / failed`。
+- 更新按钮联动：没有新版本时禁用下载和安装；已下载后禁用下载、启用安装；安装中全部禁用。
+- 更新失败显示错误；可重新检查/下载。
+- 保留 beta.14 的四栏工具/帮助页统一、缩略图修复、原子升级/回滚。
 
 ## 验证
 
 ```text
-/app/help/https /app/help/keys /app/peer-sync /app/peer-grants
-/app/backup /app/peer-groups 全部 200
-每页 side/detail/toggle 存在
-每页 1600/390 无横向滚动
-设置页点击五个入口均到达目标页
-备份下载产生 taa-backup.zip
-中心组同步未配置时按钮 disabled
+版本页：agent runtime = 1，显示 alice / 本地运行时 / 2.2.47
+更新状态 current：检查可点，下载/安装 disabled
+模拟 available：下载可点，安装 disabled
+模拟 downloaded：下载 disabled，安装可点
+模拟 applying：三个按钮全部 disabled
+模拟 failed：显示错误，检查/下载可点
+恢复真实状态：current
 ```
 
 ## 已知限制
 
 ```text
-Windows 原生升级未验证（当前不纳入本版验收）
-真实两物理机 2 真人 + 2 agent 待用户明天验收
+Windows 原生升级未验证（本轮不做）
+真实两物理机 2 真人 + 2 agent 待明天验收
 工作组消息仍是中心中继 + 页面刷新
-自动定时 10:07/20:07 的真实等待未验收
+10:07/20:07 自动定时的真实等待未验收
 ```

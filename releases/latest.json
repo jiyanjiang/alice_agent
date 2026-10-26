@@ -1,15 +1,15 @@
 {
   "product": "TAA",
   "channel": "beta",
-  "version": "1.0.0-beta.14",
-  "file": "taa-1.0.0-beta.14.tar.gz",
-  "url": "https://raw.githubusercontent.com/jiyanjiang/team_ai_alice/main/releases/taa-1.0.0-beta.14.tar.gz",
-  "sha256": "aee3af9d912eab066928193eb24639d95cc0ccaf0e3a699e7abda14be5289c9e",
-  "bytes": 3229789,
-  "published_at": "2026-10-26T23:30:00Z",
+  "version": "1.0.0-beta.15",
+  "file": "taa-1.0.0-beta.15.tar.gz",
+  "url": "https://raw.githubusercontent.com/jiyanjiang/team_ai_alice/main/releases/taa-1.0.0-beta.15.tar.gz",
+  "sha256": "cf5d345c002de69124e576f3590c7876e4bf197409af9ac715a01f979600a9df",
+  "bytes": 3230410,
+  "published_at": "2026-10-26T23:50:00Z",
   "min_upgrade_from": [
-    "1.0.0-beta.12",
-    "1.0.0-beta.13"
+    "1.0.0-beta.13",
+    "1.0.0-beta.14"
   ],
   "notes_url": "https://github.com/jiyanjiang/team_ai_alice/blob/main/release-notes.md"
 }
