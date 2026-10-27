@@ -1,4 +1,4 @@
-# TAA 1.0.0-beta.20 · 公测
+# TAA 1.0.0-beta.26 · 公测
 
 TAA 是装在一台电脑上的 **本地 Agent 宿主 + 对等协作节点**。
 
@@ -64,7 +64,7 @@ bash /tmp/taa-install.sh
 把下面整段粘贴给 IDE 的 Agent：
 
 ```text
-请在本机安装 TAA 1.0.0-beta.20 公测包：
+请在本机安装 TAA 1.0.0-beta.26 公测包：
 
 curl -fsSL https://raw.githubusercontent.com/jiyanjiang/team_ai_alice/main/install.sh -o /tmp/taa-install.sh && bash /tmp/taa-install.sh
 
@@ -170,12 +170,12 @@ Windows：用 WSL2 的 /home/<user>/taa，不建议 /mnt/c
 ## 版本与包
 
 ```text
-产品：TAA 1.0.0-beta.20
+产品：TAA 1.0.0-beta.26
 runtime：2.2.47
 本地入口：http://127.0.0.1:6080/app
 公测中心：https://alice.loomsci.com
-包：releases/taa-1.0.0-beta.20.tar.gz
-SHA256：55200d714b4a26db6fa2db10053f7b97268f2f57162fdcb1513cc3a0676ea9cd
+包：releases/taa-1.0.0-beta.26.tar.gz
+SHA256：a67e837e0fb4ac2a4ae80c43b16fc2240315d7fc57bcb0ba2cc10eed5054ab23
 ```
 
 校验：
@@ -186,7 +186,7 @@ shasum -a 256 -c SHA256SUMS
 
 ---
 
-## beta.20 能做什么
+## beta.26 能做什么
 
 ```text
 [已实现] 本地 /app
@@ -205,7 +205,7 @@ shasum -a 256 -c SHA256SUMS
 [已实现] 2 真人 + 2 agent 工作组目录与中心中继消息
 ```
 
-## beta.20 的边界
+## beta.26 的边界
 
 ```text
 [仅本地] 审批通知进入本机 /app/inbox
@@ -245,7 +245,7 @@ shasum -a 256 -c SHA256SUMS
 ## 常见问题
 
 **Q：需要 agent key 吗？**
-不需要。beta.20 安装不要求 agent key；TAA 账号在浏览器完成创建/登录。
+不需要。beta.26 安装不要求 agent key；TAA 账号在浏览器完成创建/登录。
 
 **Q：会安装到哪里？**
 默认 `~/.taa`；可以用 `--home` 或 `TAA_HOME` 改路径。

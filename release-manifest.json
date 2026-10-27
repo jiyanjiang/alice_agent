@@ -1,9 +1,9 @@
 {
   "product": "TAA",
-  "version": "1.0.0-beta.20",
-  "file": "taa-1.0.0-beta.20.tar.gz",
-  "bytes": 3235866,
-  "sha256": "55200d714b4a26db6fa2db10053f7b97268f2f57162fdcb1513cc3a0676ea9cd",
+  "version": "1.0.0-beta.26",
+  "file": "taa-1.0.0-beta.26.tar.gz",
+  "bytes": 3239764,
+  "sha256": "a67e837e0fb4ac2a4ae80c43b16fc2240315d7fc57bcb0ba2cc10eed5054ab23",
   "center": "https://alice.loomsci.com",
   "install": "bash install.sh",
   "requires": {
@@ -38,7 +38,8 @@
     "taa-1.0.0-beta.16.tar.gz",
     "taa-1.0.0-beta.17.tar.gz",
     "taa-1.0.0-beta.18.tar.gz",
-    "taa-1.0.0-beta.19.tar.gz"
+    "taa-1.0.0-beta.19.tar.gz",
+    "taa-1.0.0-beta.20.tar.gz"
   ],
   "public_package": true
 }
