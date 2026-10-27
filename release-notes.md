@@ -1,18 +1,18 @@
-# TAA 1.0.0-beta.28 · 公测
+# TAA 1.0.0-beta.29 · 公测
 
-- 产品版本：`1.0.0-beta.28`
+- 产品版本：`1.0.0-beta.29`
 - runtime：`2.2.47`
 - 更新指针：`releases/latest.json`
-- 包：`releases/taa-1.0.0-beta.28.tar.gz`
-- 大小：3,247,301 bytes
-- SHA256：`55dee305df9010b3a15794e96e19a7e0a91c5bf30d489a298b1e9cd2ce4c3276`
+- 包：`releases/taa-1.0.0-beta.29.tar.gz`
+- 大小：3,247,763 bytes
+- SHA256：`03a0ec3edd62058324d91fbca570fa3ea68a2f7c3948e3e16c587276afe914a5`
 
 ## 本版内容
 
 - 新增独立直连监听端口 `6090`，不暴露本地 UI 端口 `6080`。
 - 中心 Node 心跳现在登记 `peer-loopback`、`peer-lan`、`peer-ipv6` 和可选 `peer-public` 端点。
 - 群详情只向群成员下发 `transport_secret`；对端使用 HMAC-SHA256 校验直连消息。
-- 群消息优先直连：同 LAN 可达即走 6090；跨 LAN 在端点可达时也走直连；失败才回退中心中继。
+- 群消息优先直连：同 LAN 可达即走 6090；跨 LAN 在端点可达时也走直连；中心不可达时也先直连，失败才回退中心中继。
 - 直连消息支持图片附件；接收端写入自己的 `static/uploads`。
 - 群消息增加 `client_message_id`，部分直连 + 中心回退时由接收端去重。
 - 聊天页不再在 HTTP 请求里同步中心 groups/messages；改为后台增量同步，页面打开从 8–15 秒降到约 0.01 秒。
@@ -54,7 +54,7 @@ update fallback / manual policy     PASS
 ## 已知限制
 
 ```text
-Delta 必须升级到 beta.28 才会上报 peer endpoints
+Delta 必须升级到 beta.29 才会上报 peer endpoints
 当前公网直连需要手动端口映射或可达的公网 endpoint
 公网 peer listener 还没有 TLS（下一版）
 中心中继的图片附件仍未接入
