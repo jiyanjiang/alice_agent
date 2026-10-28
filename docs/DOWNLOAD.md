@@ -3,10 +3,10 @@
 ## 当前公测包
 
 ```text
-产品：TAA 1.0.0-beta.32
-包：releases/taa-1.0.0-beta.32.tar.gz
+产品：TAA 1.0.0-beta.33
+包：releases/taa-1.0.0-beta.33.tar.gz
 字节：3,214,993
-SHA256：b6e6ddede5ed1f6993570cd7f225fc12626d3613af07173d6a5a98351281624e
+SHA256：33a14dd51c8274770de7a4c6fdb9a6917650d65e25bbdfc2fce84b405c74fdf6
 ```
 
 公开地址：
@@ -18,7 +18,7 @@ https://github.com/jiyanjiang/team_ai_alice
 raw 包：
 
 ```text
-https://raw.githubusercontent.com/jiyanjiang/team_ai_alice/main/releases/taa-1.0.0-beta.32.tar.gz
+https://raw.githubusercontent.com/jiyanjiang/team_ai_alice/main/releases/taa-1.0.0-beta.33.tar.gz
 ```
 
 **不需要 key，不需要登录。**
@@ -41,13 +41,13 @@ shasum -a 256 -c SHA256SUMS
 或：
 
 ```bash
-shasum -a 256 releases/taa-1.0.0-beta.32.tar.gz
+shasum -a 256 releases/taa-1.0.0-beta.33.tar.gz
 ```
 
 必须等于：
 
 ```text
-b6e6ddede5ed1f6993570cd7f225fc12626d3613af07173d6a5a98351281624e
+33a14dd51c8274770de7a4c6fdb9a6917650d65e25bbdfc2fce84b405c74fdf6
 ```
 
 ## 历史包 / 回滚
