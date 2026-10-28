@@ -1,4 +1,4 @@
-# INSTALL · 安装 TAA 1.0.0-beta.34
+# INSTALL · 安装 TAA 1.0.0-beta.35
 
 本页是详细安装说明，适用于 macOS / Linux / Windows(WSL2)。
 
@@ -40,7 +40,7 @@ bash /tmp/taa-install.sh
 安装器执行：
 
 ```text
-1. 下载 beta.34 包
+1. 下载 beta.35 包
 2. 校验 SHA256
 3. 安装到 ~/.taa/app
 4. 创建 ~/.taa/venv
