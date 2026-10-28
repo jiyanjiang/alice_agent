@@ -4,8 +4,8 @@
 
 | 制品 | 版本 | 包含 |
 |---|---|---|
-| `taa-1.0.0-beta.30.tar.gz` | 1.0.0-beta.30 / runtime 2.2.47 | 全接口发现、peer directory、同 LAN 选路、探测、直连优先、中心附件 fallback、后台同步 |
-| 公库 main | 1.0.0-beta.30 | installer、包、latest.json、IDE prompt、文档 |
+| `taa-1.0.0-beta.31.tar.gz` | 1.0.0-beta.31 / runtime 2.2.47 | 全接口发现、peer directory、同 LAN 选路、探测、直连优先、中心附件 fallback、后台同步 |
+| 公库 main | 1.0.0-beta.31 | installer、包、latest.json、IDE prompt、文档 |
 
 ## 历史包
 
