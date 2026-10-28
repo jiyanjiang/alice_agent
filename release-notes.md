@@ -1,62 +1,41 @@
-# TAA 1.0.0-beta.29 · 公测
+# TAA 1.0.0-beta.30 · 公测
 
-- 产品版本：`1.0.0-beta.29`
+- 产品版本：`1.0.0-beta.30`
 - runtime：`2.2.47`
-- 更新指针：`releases/latest.json`
-- 包：`releases/taa-1.0.0-beta.29.tar.gz`
-- 大小：3,247,763 bytes
-- SHA256：`03a0ec3edd62058324d91fbca570fa3ea68a2f7c3948e3e16c587276afe914a5`
+- 包：`releases/taa-1.0.0-beta.30.tar.gz`
+- 大小：3,254,857 bytes
+- SHA256：`6a435609180c301e4f82d18bedb546d5229300a7dc24ee2417588bec7f736c18`
 
 ## 本版内容
 
-- 新增独立直连监听端口 `6090`，不暴露本地 UI 端口 `6080`。
-- 中心 Node 心跳现在登记 `peer-loopback`、`peer-lan`、`peer-ipv6` 和可选 `peer-public` 端点。
-- 群详情只向群成员下发 `transport_secret`；对端使用 HMAC-SHA256 校验直连消息。
-- 群消息优先直连：同 LAN 可达即走 6090；跨 LAN 在端点可达时也走直连；中心不可达时也先直连，失败才回退中心中继。
-- 直连消息支持图片附件；接收端写入自己的 `static/uploads`。
-- 群消息增加 `client_message_id`，部分直连 + 中心回退时由接收端去重。
-- 聊天页不再在 HTTP 请求里同步中心 groups/messages；改为后台增量同步，页面打开从 8–15 秒降到约 0.01 秒。
-- 好友列表增加进程内缓存，群同步在后台刷新。
-- 更新检查优先 `raw.githubusercontent.com`，`api.github.com` 失败时自动回退；手动检查异步执行，不阻塞页面；手动检查/安装不计入自动额度。
-- 更新检查失败时显示可读的网络提示，不再直接把 `Errno 8` 抛给用户。
-- 自动检查仍为每天 2 次；自动安装仍为每天 1 次且要求空闲；手动触发不设次数上限。
-
-## 直连边界（必须明确）
-
-```text
-同 LAN 且 6090 可达                 → 直连
-公网端口映射 / IPv6 可达 / 公网 endpoint → 直连
-两端都在对称 NAT / CGNAT 且无端口映射 → 中心中继
-```
-
-跨 LAN 直连不是“所有网络都无条件可达”。本版完成的是：
-
-```text
-中心只做目录与能力下发；
-直连端点可达时不再经过 alice.loomsci.com；
-不可达时才回退中心。
-```
-
-下一步才是 STUN/ICE/UPnP/NAT-PMP 候选发现，以及公网直连 TLS。
+- **全接口发现**：不再只取默认路由 IP，枚举所有 IPv4/IPv6 接口，标记物理 LAN、VPN、loopback、link-local。
+- **中心端点元数据**：保存 iface/ip/netmask/scope/priority，好友节点接口返回完整候选。
+- **本地 peer directory**：拉取全部已批准好友的所有 Node，保存 peer_nodes / peer_candidates。
+- **同 LAN 选路**：本机 netmask 计算同网段，物理 LAN 优先；VPN 排后。
+- **可达性探测**：GET /peer/v1/ping，校验 node_id，记录延迟和失败原因。
+- **直连优先**：群消息按排序候选发送；失败才中心 fallback。
+- **中心附件 fallback**：群图片上传 R2，消息携带 attachments，接收端拉取渲染。
+- **聊天页**：后台同步，页面打开 < 0.1s；版本页新增直连节点表。
+- **修复**：room_state 只读写入 500、后台同步写锁、重复函数定义。
 
 ## 验证
 
 ```text
-peer listener / peer/v1/ping        PASS
-peer LAN probe                      PASS
-HMAC direct message                 PASS
-direct image attachment             PASS
-group secret issued by center       PASS
-page load after background sync     PASS (~0.01s)
-update fallback / manual policy     PASS
+PHP compile                     PASS
+peer 6090 ping                  PASS
+peer directory sync             PASS
+peer status API                 PASS
+version page peer table         PASS
+center R2 upload + GET          PASS
+center message attachments      PASS
+redaction/package scan          PASS
 ```
 
-## 已知限制
+## 已知边界
 
 ```text
-Delta 必须升级到 beta.29 才会上报 peer endpoints
-当前公网直连需要手动端口映射或可达的公网 endpoint
-公网 peer listener 还没有 TLS（下一版）
-中心中继的图片附件仍未接入
-Agent 唯一 handle 尚未迁移
+同 LAN 不同 VLAN/子网：没有路由时中心 fallback
+对称 NAT/CGNAT：无 STUN/ICE/TURN 时中心 fallback
+公网 peer endpoint 必须 TLS
+旧图片 #217 不会自动补发，需要重新发送
 ```
