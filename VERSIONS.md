@@ -4,8 +4,8 @@
 
 | 制品 | 版本 | 包含 |
 |---|---|---|
-| `taa-1.0.0-beta.35.tar.gz` | 1.0.0-beta.35 / runtime 2.2.47 | 双 peer 端口 6090/6091、监听自检、并发去重、更新刷新 |
-| 公库 main | 1.0.0-beta.35 | installer、包、latest.json、IDE prompt、文档 |
+| `taa-1.0.1-rc3.tar.gz` | 1.0.1-rc3 / runtime 2.2.51 | 双 peer 端口 6090/6091、监听自检、并发去重、更新刷新 |
+| 公库 main | 1.0.1-rc3 | installer、包、latest.json、IDE prompt、文档 |
 
 ## 历史包
 
